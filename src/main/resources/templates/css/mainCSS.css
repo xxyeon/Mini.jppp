@@ -1,0 +1,56 @@
+#logo > a{
+    color: black;
+}
+
+.cover-container {
+    max-width: 42em;
+}
+
+.ex-pic{
+    position: relative;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+    object-fit: cover;
+    border-radius: 12%;
+    filter: brightness(80%);
+}
+
+.under-pic{
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    width: 800px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.px-3{
+    position: absolute;
+    text-align: center;
+    top: 70%;
+    left: 50%;
+    margin-left: -400px;
+    width: 800px;
+}
+
+#go-to-learn{
+    position: absolute;
+    width: 100px;
+    bottom: -20%;
+    left: 50%;
+    margin-left: -50px;
+    font-size: 15pt;
+}
+
+#go-to-learn > a{
+    text-decoration: none;
+    color:rgb(0, 76, 255);
+}
+
+#next-page{
+    position: absolute;
+    width: 100px;
+    bottom: -21%;
+    left: 58%;
+    margin-left: -50px;
+}
