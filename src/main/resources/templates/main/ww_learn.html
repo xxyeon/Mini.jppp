@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>C++ learn</title>
-        <link rel="stylesheet" th:href="@{/css/learnCSS.css}"  href="../../../../learnCSS.css">
+        <link rel="stylesheet" th:href="@{/css/learnCSS.css}"  href="../css/learnCSS.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,27 +45,12 @@
                 <div class="contents">
                     <div id="carouselExample" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div th:each="word : ${words}" class="carousel-item" th:classappend="${word.getWord_id() == 1} ? active : ''" >
                                 <a>
                                     <figure>
-                                        <img th:attr="src=@{/img/term1.jpeg}" src="../../img/term1.jpeg" class="d-block w-100" alt="term 1">
-                                        <figcaption th:text="${words[0].answer}">term 1</figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a>
-                                    <figure>
-                                        <img th:attr="src=@{/img/term2.jpeg}" src="../../img/term2.jpeg" class="d-block w-100" alt="term 2">
-                                        <figcaption th:text="${words[1].answer}">term 2</figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a>
-                                    <figure>
-                                        <img th:attr="src=@{/img/term3.jpeg}" src="../../img/term3.jpeg" class="d-block w-100" alt="term 3">
-                                        <figcaption th:text="${words[2].answer}">term 3</figcaption>
+                                        <p th:text="${word.word}" class="word">word</p> <!-- 학습할 단어가 들어가야 해서 이 태그가 추가 됐는데 css 수정이 필요해 보여요! 태그는 변경해도 됩니다.-->
+                                        <img th:attr="src=@{/img/term1.jpeg}" src="../img/term1.jpeg" class="d-block w-100" alt="term 1">
+                                        <figcaption th:text="${word.answer}">term 1</figcaption>
                                     </figure>
                                 </a>
                             </div>

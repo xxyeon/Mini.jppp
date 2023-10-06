@@ -1,8 +1,8 @@
-package mini.miniProj.repository;
+package miniJppp.miniProj.repository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mini.miniProj.domain.Word;
+import miniJppp.miniProj.domain.Word;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.support.JdbcUtils;

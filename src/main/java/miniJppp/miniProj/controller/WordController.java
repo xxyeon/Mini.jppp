@@ -1,9 +1,9 @@
-package mini.miniProj.controller;
+package miniJppp.miniProj.controller;
 
 import lombok.RequiredArgsConstructor;
 
-import mini.miniProj.domain.Word;
-import mini.miniProj.repository.WordRepository;
+import miniJppp.miniProj.domain.Word;
+import miniJppp.miniProj.repository.WordRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
