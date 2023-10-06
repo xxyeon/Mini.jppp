@@ -49,7 +49,7 @@
                                 <a>
                                     <figure>
                                         <img th:attr="src=@{/img/term1.jpeg}" src="../../img/term1.jpeg" class="d-block w-100" alt="term 1">
-                                        <figcaption>term 1</figcaption>
+                                        <figcaption th:text="${words[0].answer}">term 1</figcaption>
                                     </figure>
                                 </a>
                             </div>
@@ -57,7 +57,7 @@
                                 <a>
                                     <figure>
                                         <img th:attr="src=@{/img/term2.jpeg}" src="../../img/term2.jpeg" class="d-block w-100" alt="term 2">
-                                        <figcaption>term 2</figcaption>
+                                        <figcaption th:text="${words[1].answer}">term 2</figcaption>
                                     </figure>
                                 </a>
                             </div>
@@ -65,7 +65,7 @@
                                 <a>
                                     <figure>
                                         <img th:attr="src=@{/img/term3.jpeg}" src="../../img/term3.jpeg" class="d-block w-100" alt="term 3">
-                                        <figcaption>term 3</figcaption>
+                                        <figcaption th:text="${words[2].answer}">term 3</figcaption>
                                     </figure>
                                 </a>
                             </div>
