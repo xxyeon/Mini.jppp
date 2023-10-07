@@ -57,25 +57,30 @@ body{
     top: 15%;
     left: 50%;
     margin-left: -300px;
-
-}
-
-.choose_btn{
-    position: relative;
-    width: 300px; 
-    bottom: 5%;
-    left: 50%;
-    margin-left: -150px;
 }
 
 .carousel-inner figure{
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
+.word-preview{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 20pt;
+    font-weight: 400;
+    color: darkblue;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+}
+
 .carousel-inner figcaption{
     width: 100%;
-    height: 95.5%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     
     position: absolute;
@@ -96,4 +101,12 @@ body{
 .carousel-inner a:hover figcaption, .carousel-inner a:focus figcaption {
     /* 마우스를 올리면 보이게 처리 */
     opacity: 1;
+}
+
+.choose_btn{
+     position: relative;
+     width: 300px;
+     bottom: 5%;
+     left: 50%;
+     margin-left: -150px;
 }

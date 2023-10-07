@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta set="UTF-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>C++ learn</title>
-        <link rel="stylesheet" th:href="@{/css/learnCSS.css}"  href="../css/learnCSS.css">
+        <link rel="stylesheet" th:href="@{/css/learnCSS.css}" href="../css/learnCSS.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
                 <header>
                     <nav>
                         <div id="close_btn">
-                            <a th:onclick="|location.href='@{/main}'|" role="button"><button type="button" class="btn-close" aria-label="Close"></button></a>
+                            <a th:onclick="|location.href='@{/main}'|" onclick="location.href='ww_main.html.html'" role="button"><button type="button" class="btn-close" aria-label="Close"></button></a>
                         </div>
                         <div id="title"><h3>학습하기</h3></div>
                         <div id="bookmark">
@@ -31,8 +31,8 @@
                             </svg>
                         </div>
                         <div id="inventory">
-                            <a th:onclick="|location.href='@{/main/inventory}'|"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-seam"
-                                                                      viewBox="0 0 20 20">
+                            <a th:onclick="|location.href='@{/main/inventory}'|" onclick="location.href='inventory.html'"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-seam"
+                                                                                                            viewBox="0 0 20 20">
                                 <path
                                     d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
                             </svg></a>
@@ -45,16 +45,25 @@
                 <div class="contents">
                     <div id="carouselExample" class="carousel slide">
                         <div class="carousel-inner">
-                            <div th:each="word : ${words}" class="carousel-item" th:classappend="${word.getWord_id() == 1} ? active : ''" >
+                                <div th:each="word : ${words}" class="carousel-item" th:classappend="${word.getWord_id() == 1} ? active : ''" >
+                                    <a>
+                                        <figure>
+                                            <img th:attr="src=@{/img/term1.jpeg}" src="../img/term1.jpeg" class="d-block w-100" alt="image 1">
+                                            <h1 th:text="${word.word}" class="word-preview">word</h1>
+                                            <figcaption th:text="${word.answer}" class="word-answer">term 1</figcaption>
+                                        </figure>
+                                    </a>
+                                </div>
+                           <!-- <div class="carousel-item">
                                 <a>
                                     <figure>
-                                        <p th:text="${word.word}" class="word">word</p> <!-- 학습할 단어가 들어가야 해서 이 태그가 추가 됐는데 css 수정이 필요해 보여요! 태그는 변경해도 됩니다.-->
-                                        <img th:attr="src=@{/img/term1.jpeg}" src="../img/term1.jpeg" class="d-block w-100" alt="term 1">
-                                        <figcaption th:text="${word.answer}">term 1</figcaption>
+                                        <img src="../img/term1.jpeg" class="d-block w-100" alt="image 1">
+                                        <h1 class="word-preview">word</h1>
+                                        <figcaption class="word-answer">term 2</figcaption>
                                     </figure>
                                 </a>
                             </div>
-                        </div>
+                        </div>-->
 
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -28,16 +28,16 @@
                         
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <div id="logo">
-                                <a th:href="@{/templates/main/ww_main.html}" href="ww_main.html" ><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-word-fill"
-                                                                                                       viewBox="0 0 16 16">
+                                <a th:href="@{/src/templates/main/ww_main.html}" onclick="location.href='ww_main.html'" ><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-word-fill"
+                                                                                                           viewBox="0 0 16 16">
                                     <path
                                         d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
                                 </svg></a>
                             </div>
                             <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-                            <li><a th:href="@{/templates/main/inventory.html}" href="inventory.html" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
-                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+                            <li><a th:href="@{/src/templates/main/inventory.html}" onclick="location.href='inventory.html'" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Word</a></li>
+                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Textbook</a></li>
                         </ul>
                     
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -71,14 +71,15 @@
                             <p class="lead">Word Web은 C++ 공부에 어려움을 겪는 사람들을 위해 다양한 용어를 설명해드려요!
                                 <br>언제 어디서든 단어장처럼 열어 확인하며 지식을 쌓아보세요.
                             </p>
-                            <div id="go-to-learn"><a th:onclick="|location.href='@{/main/learn}'|">Go to learn</a></div>
+                            <div id="go-to-learn"><a th:onclick="|location.href='@{/main/learn}'|" onclick="location.href='ww_learn.html'">Go to learn</a></div>
                             
-                            <a th:onclick="|location.href='@{/main/learn}'|"><div id="next-page"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="rgb(43, 107, 255)" class="bi bi-arrow-right-short"
-                                                                             viewBox="0 0 16 16">
+                            <a th:onclick="|location.href='@{/main/learn}'|" onclick="location.href='ww_learn.html'"><div id="next-page"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="rgb(43, 107, 255)" class="bi bi-arrow-right-short"
+                                                                                                                           viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
                             </svg></div></a>
-                        </div>
+                        </main>
+                    </div>
                 </main>
             </div>    
         </div>
