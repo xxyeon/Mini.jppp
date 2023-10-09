@@ -18,10 +18,13 @@ body{
     left: 5%;
 }
 
-.reviewBtn {
+.reviewBtn{
     position: relative;
-    top: -20%;
+    bottom: 20%;
     left: 70%;
+}
+
+#modal-btn{
     font-family: 'IBM Plex Sans KR', sans-serif;
     border: 1px black;
     border-style: solid;
@@ -33,9 +36,24 @@ body{
     align-items: center;
 }
 
-.reviewBtn > a{
-    text-decoration: none;
-    color: black;
+.modal-content {
+    position: fixed;
+    top: 20%;
+}
+
+.modal-content > div {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 300 !important;
+}
+
+.modal-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index : -1;
 }
 
 #p-title{
@@ -52,16 +70,13 @@ body{
     height: 400px;
 }
 
-.radioBtn {
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    font-weight: 500;
-}
-
 input[type="radio"]{
     display: none;
 }
 
 .radioBtn{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 500;
     overflow: hidden;
     top: 20%;
     position: relative;
@@ -71,7 +86,7 @@ input[type="radio"]{
     font-size: 18px;
     cursor: pointer;
     float: left;
-    width: 10%;
+    min-width: 100px;
     text-align: center;
     padding: 15px 0;
     font-weight: bold;
@@ -90,6 +105,8 @@ input[type="radio"]{
 /* 원래 안 보이다가*/
 .radio-block > div {
     display: none;
+    position: relative;
+    right: 8px;
 }
 
 /* 체크 되면 보임*/
