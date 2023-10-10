@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta set="UTF-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>my inventory</title>
@@ -12,7 +12,7 @@
             <link href="../assets/dist/css/bootstrap.min.css/bootstrap.bundle.js" rel="stylesheet">
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="all">
@@ -27,16 +27,16 @@
                 
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <div id="logo">
-                                <a href="ww_main.html"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+                                <a th:href="@{/templates/main/ww_main.html}" href="ww_main.html"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
                                                             fill="currentColor" class="bi bi-file-word-fill" viewBox="0 0 16 16">
                                         <path
                                             d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
                                     </svg></a>
                             </div>
-                            <li><a href="ww_main.html" class="nav-link px-2 link-body-emphasis">Overview</a></li>
-                            <li><a href="./inventory.html" class="nav-link px-2 link-secondary">Inventory</a></li>
-                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Customers</a></li>
-                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Products</a></li>
+                            <li><a th:href="@{/templates/main/ww_main.html}" href="ww_main.html" class="nav-link px-2 link-body-emphasis">Overview</a></li>
+                            <li><a th:href="@{/templates/main/inventory.html}" href="./inventory.html" class="nav-link px-2 link-secondary">Inventory</a></li>
+                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Word</a></li>
+                            <li><a href="#" class="nav-link px-2 link-body-emphasis">Textbook</a></li>
                         </ul>
                 
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -60,6 +60,307 @@
                         </div>
                     </div>
                 </header>
+                <main>
+                    <div class="upper">
+                        <div class="description">
+                            <br><br>
+                            <div id="p-title"><p>홍길동님의 인벤토리입니다.</p></div>
+                            <div id="p"><p>단어 학습 내용이 홍길동님의 인벤토리에 저장되었어요.<br> 언제든 다시 확인하며 C++ 개념을 공부해보세요.</p></div>
+                        </div>
+                        <div class="reviewBtn">
+                            <button id="modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                복습하러 가기
+                            </button>
+                        </div>
+
+                        <!--챕터 선택 창(모달)-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>C++ chapter</strong></h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>학습하실 챕터를 선택해주세요.<br></p>
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        Chapter 1
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <strong>수식과 연산자</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        Chapter 2
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <strong>조건문과 반복문</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        Chapter 3
+                                                    </button>
+                                                </h2>
+                                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <strong>함수 생성</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button th:onclick="|location.href='@{/main/learn}'|" onclick="location.href='ww_learn.html'" type="button" class="btn btn-md btn-primary">학습 시작</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-bg"></div>
+                        </div>
+
+                    </div>
+                    <div class="main">
+                        <div class="all-contents">
+                            <input type="radio" id="radioKnow" name="word" checked/>
+                            <input type="radio" id="radioDontknow" name="word"/>
+                            <input type="radio" id="radioBookmark" name="word"/>
+
+                            <div class="radioBtn">
+                                <label for="radioKnow">알아요</label>
+                                <label for="radioDontknow">몰라요</label>
+                                <label for="radioBookmark">북마크</label>
+                            </div>
+
+                            <div class="radio-block">
+                                <div class="radio-contents"><!--무시--></div>
+                                <!--몰라요-->
+                                <div class="radio-contents">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">알아요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">알아요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">알아요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">알아요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">알아요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">알아요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--북마크-->
+                                <div class="radio-contents">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">북마크 해제</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">북마크 해제</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">북마크 해제</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">북마크 해제</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">북마크 해제</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">북마크 해제</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--알아요-->
+                                <div class="radio-contents">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">몰라요로 옮기기 </a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">몰라요로 옮기기 </a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">몰라요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">몰라요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">몰라요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                            <div class="card" style="width: 300px;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" class="card-link">몰라요로 옮기기</a>
+                                                    <a href="#" class="card-link">북마크하기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </main>
             </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
