@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>C++ learn</title>
-        <link rel="stylesheet" th:href="@{/css/learnCSS.css}" href="../css/learnCSS.css">
+        <link rel="stylesheet" th:href="@{/css/learnCSS.css}" href="../../static/css/learnCSS.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +45,7 @@
                 <div class="contents">
                     <div id="carouselExample" class="carousel slide">
                         <div class="carousel-inner">
-                                <div th:each="word : ${words}" class="carousel-item" th:classappend="${word.getWord_id() == 1} ? active : ''" >
+                                <div th:each="word : ${words}" class="carousel-item" th:classappend="${words.indexOf(word) == 0} ? active : ''" >
                                     <a>
                                         <figure>
                                             <img th:attr="src=@{/img/term1.jpeg}" src="../img/term1.jpeg" class="d-block w-100" alt="image 1">
