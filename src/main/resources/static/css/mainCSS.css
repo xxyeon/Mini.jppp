@@ -76,3 +76,13 @@
     background-color: rgba(0,0,0,0.5);
     z-index : -1;
 }
+
+.accordion-body button {
+    border: none;
+    background-color: transparent
+}
+
+.accordion-body button:hover {
+    font-weight: bold;
+}
+

@@ -104,8 +104,7 @@
                                                     <div th:id="${chapter.chapter_id}" id="collapseOne" class="accordion-collapse collapse"
                                                          th:classappend="${chapter.chapter_id == 1} ? show : ''" data-bs-parent="#accordionExample">
                                                         <div class="accordion-body">
-                                                            <button style="border: none; background-color: transparent"
-                                                                    th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|"
+                                                            <button th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|"
                                                                     th:text="${chapter.title}">
                                                                 수식과 연산자
                                                             </button>
