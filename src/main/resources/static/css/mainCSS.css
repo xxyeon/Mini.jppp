@@ -61,7 +61,10 @@
 
 .modal-content{
     position: fixed;
-    top: 20%;
+    top: 10%;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
 }
 
 .modal-bg{

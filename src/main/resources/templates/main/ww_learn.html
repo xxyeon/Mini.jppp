@@ -50,9 +50,20 @@
                                         <figure>
                                             <img th:attr="src=@{/img/term1.jpeg}" src="../img/term1.jpeg" class="d-block w-100" alt="image 1">
                                             <h1 th:text="${word.word}" class="word-preview">word</h1>
-                                            <figcaption th:text="${word.answer}" class="word-answer">term 1</figcaption>
+                                            <figcaption class="word-answer">
+                                            <div class="word-answer" id="answer">
+                                                <p class="word-answer" th:text="${word.answer}">
+                                                    word
+                                                </p>
+                                            </div>
+
+
                                         </figure>
                                     </a>
+
+<!--                                        <p id="answer" class="word-answer" th:text="${word.answer}">-->
+<!--                                            word-->
+<!--                                        </p>-->
                                 </div>
                            <!-- <div class="carousel-item">
                                 <a>

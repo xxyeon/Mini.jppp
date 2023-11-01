@@ -74,29 +74,30 @@ body{
     top: 45%;
     left: 50%;
     transform: translateX(-50%);
+    white-space:pre-line;
+    text-align: center;
 }
 
-.carousel-inner figcaption{
+.carousel-inner #answer {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    
     position: absolute;
     /* 이미지와 겹치게 처리 */
     top: 0;
     left: 0;
-    
     color: #fff;
     text-align: center;
-    line-height: 350px;
-    
+    /*line-height: 350px;  --> 개행 안된 이유 */
     opacity: 0;
     /* 처음엔 안보이고 */
-    
     transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.carousel-inner a:hover figcaption, .carousel-inner a:focus figcaption {
+.carousel-inner #answer:hover, .carousel-inner #answer p:hover, .carousel-inner #answer:focus, .carousel-inner #answer p:focus {
     /* 마우스를 올리면 보이게 처리 */
     opacity: 1;
 }
@@ -107,4 +108,17 @@ body{
      bottom: 5%;
      left: 50%;
      margin-left: -150px;
+}
+#answer p{
+    word-break: keep-all;
+    /*white-space:pre-line;*/
+    /*opacity: 0;*/
+    position: absolute;
+    /*top: 40%;*/
+    left: 50%;
+    width: 60%;
+    transform: translateX(-50%);
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
 }
