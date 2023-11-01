@@ -31,7 +31,6 @@ public class WordController {
     @GetMapping("/learn/{chapterId}")
     public String learn(@PathVariable("chapterId") int chapter_id, Model model) throws SQLException {
         List<Word> words = wordRepository.findByChapter(chapter_id);
-        System.out.println(words);
         model.addAttribute("words", words);
 
         return"main/ww_learn";

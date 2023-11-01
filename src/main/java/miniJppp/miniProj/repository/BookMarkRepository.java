@@ -1,7 +1,7 @@
-package mini.miniProj.repository;
+package miniJppp.miniProj.repository;
 
-import mini.miniProj.domain.Book_mark;
-import mini.miniProj.domain.Review;
+import miniJppp.miniProj.domain.Book_mark;
+import miniJppp.miniProj.domain.Review;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

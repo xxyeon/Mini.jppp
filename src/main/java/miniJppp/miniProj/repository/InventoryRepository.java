@@ -1,7 +1,7 @@
-package mini.miniProj.repository;
+package miniJppp.miniProj.repository;
 
-import mini.miniProj.domain.Inventory;
-import mini.miniProj.domain.Learn;
+import miniJppp.miniProj.domain.Inventory;
+import miniJppp.miniProj.domain.Learn;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
