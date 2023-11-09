@@ -24,7 +24,7 @@ public class WordRepository {
     private ArrayList<Chapter> chapters;
 
     public List<Word> findByChapter(int chapterId) throws SQLException {
-        String sql = "select * from word where chapter_id = ?";
+        String sql = "select * from WORD where chapter_id = ?";
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -57,7 +57,7 @@ public class WordRepository {
 
     public ArrayList<Chapter> findAllChapter() {
         chapters = new ArrayList<>();
-        String sql = "select * from chapter";
+        String sql = "select * from CHAPTER";
 
         Connection con = null;
         PreparedStatement pstmt = null;
