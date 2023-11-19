@@ -1,0 +1,24 @@
+body{
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+body.fade{
+    opacity: 0;
+}
+
+#under-header {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 300;
+}
+
+#bg-image{
+    background-image: url("../img/miniGameBG.png");
+    background-size: cover;
+}
+
+.bg-script{
+    color: white;
+}
+
