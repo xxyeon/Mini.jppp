@@ -12,7 +12,7 @@
         <link href="../assets/dist/css/bootstrap.min.css/bootstrap.bundle.js" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
     </head>
 
     <body class="fade">
@@ -66,7 +66,7 @@
                         <main class="px-3">
                             <br>
                             <div>
-                                <h2>Word Web에서 C++ 개념 공부와 미니 게임 플레이를 즐겨보세요.</h2>
+                                <h2 style="font-weight: 300">Word Web에서 C++ 개념 공부와 미니 게임 플레이를 즐겨보세요.</h2>
                                 <p class="lead">Word Web은 C++ 공부에 어려움을 겪는 사람들을 위해 다양한 용어를 설명해드려요!
                                     <br>또한 이를 활용한 미니 게임까지 플레이할 수 있어요.
                                     <br>언제 어디서든 단어장처럼 열어 확인하며 지식을 쌓아보세요.
@@ -83,17 +83,17 @@
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header" style="background-color: rgba(235,235,235,100)">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>C++ chapter</strong></h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" style="cursor: pointer;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>학습하실 챕터를 선택해주세요.<br></p>
+                                            <p style="font-weight: 300;">학습하실 챕터를 선택해주세요.<br></p>
                                             <div class="accordion" id="accordionExample">
                                                 <!---->
                                                 <div class="accordion-item" th:each="chapter:${chapters}">
-                                                    <h2 class="accordion-header">
-                                                        <button th:text="${chapter.number}" class="accordion-button"
+                                                    <h2 class="accordion-header" >
+                                                        <button style="font-weight: 500" th:text="${chapter.number}" class="accordion-button"
                                                                 th:classappend="${chapter.chapter_id == 1} ? '' : collapsed" type="button" data-bs-toggle="collapse"
                                                                 th:data-bs-target="'#'+ ${chapter.chapter_id}"
                                                                 data-bs-target="#collapseOne"
@@ -104,11 +104,11 @@
                                                     </h2>
                                                     <div th:id="${chapter.chapter_id}" id="collapseOne" class="accordion-collapse collapse"
                                                          th:classappend="${chapter.chapter_id == 1} ? show : ''" data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            <button th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|"
-                                                                    th:text="${chapter.title}">
+                                                        <div class="accordion-body" style="cursor: pointer; font-weight: 300" th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|">
+                                                            <p id="chapter"
+                                                                    th:text="${chapter.title}" >
                                                                 수식과 연산자
-                                                            </button>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>

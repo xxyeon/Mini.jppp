@@ -74,6 +74,7 @@ logo > a{
     height: 40px;
     background-color: #0d6efd;
     color: white;
+    font-weight: 300;
 }
 
 .modal {
@@ -99,12 +100,8 @@ logo > a{
     z-index : -1;
 }
 
-.accordion-body button {
-    border: none;
-    background-color: transparent
+.accordion-body :hover{
+    font-weight: 500;
 }
 
-.accordion-body button:hover {
-    font-weight: bold;
-}
 

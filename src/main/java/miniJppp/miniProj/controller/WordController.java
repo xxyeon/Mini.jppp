@@ -32,12 +32,15 @@ public class WordController {
     public String learn(@PathVariable("chapterId") int chapter_id, Model model) throws SQLException {
         List<Word> words = wordRepository.findByChapter(chapter_id);
         model.addAttribute("words", words);
-
+        int wordCount = wordRepository.wordTotal();
+        model.addAttribute("wordTotal", wordCount);
         return"main/ww_learn";
     }
 
     @GetMapping("/inventory")
-    public String inventory() {
+    public String inventory(Model model) {
+        ArrayList<Chapter> chapters = wordRepository.findAllChapter();
+        model.addAttribute("chapters", chapters);
         return"main/inventory";
     }
 

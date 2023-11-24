@@ -9,10 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="../assets/dist/css/bootstrap.min.css/bootstrap.bundle.js" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="fade">
 <div class="all">
@@ -76,17 +78,17 @@
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header" style="background-color: rgba(235,235,235,100)">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>C++ chapter</strong></h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>학습하실 챕터를 선택해주세요.<br></p>
+                                <p style="font-weight: 300;">학습하실 챕터를 선택해주세요.<br></p>
                                 <div class="accordion" id="accordionExample">
                                     <!---->
                                     <div class="accordion-item" th:each="chapter:${chapters}">
-                                        <h2 class="accordion-header">
-                                            <button th:text="${chapter.number}" class="accordion-button"
+                                        <h2 class="accordion-header" >
+                                            <button style="font-weight: 500" th:text="${chapter.number}" class="accordion-button"
                                                     th:classappend="${chapter.chapter_id == 1} ? '' : collapsed" type="button" data-bs-toggle="collapse"
                                                     th:data-bs-target="'#'+ ${chapter.chapter_id}"
                                                     data-bs-target="#collapseOne"
@@ -97,11 +99,11 @@
                                         </h2>
                                         <div th:id="${chapter.chapter_id}" id="collapseOne" class="accordion-collapse collapse"
                                              th:classappend="${chapter.chapter_id == 1} ? show : ''" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <button th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|"
-                                                        th:text="${chapter.title}">
+                                            <div class="accordion-body" style="cursor: pointer; font-weight: 300" th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|">
+                                                <p id="chapter"
+                                                   th:text="${chapter.title}" >
                                                     수식과 연산자
-                                                </button>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -131,68 +133,80 @@
                         <div class="radio-contents">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">알아요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">알아요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">알아요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem;"></i>
+                                            </div>
+                                            <button class="moveBtn">알아요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">알아요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">알아요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">알아요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">알아요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">알아요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">알아요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">알아요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">알아요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
@@ -203,62 +217,62 @@
                         <div class="radio-contents">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">북마크 해제</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <button class="moveBtn">북마크 해제</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">북마크 해제</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <button class="moveBtn">북마크 해제</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">북마크 해제</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <button class="moveBtn">북마크 해제</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">북마크 해제</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <button class="moveBtn">북마크 해제</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">북마크 해제</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <button class="moveBtn">북마크 해제</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">북마크 해제</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <button class="moveBtn">북마크 해제</button>
                                         </div>
                                     </div>
                                 </div>
@@ -269,68 +283,80 @@
                         <div class="radio-contents">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px;">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">몰라요로 옮기기 </a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">몰라요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px;">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">몰라요로 옮기기 </a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">몰라요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px;">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">몰라요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">몰라요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px;">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">몰라요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">몰라요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px;">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">몰라요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">몰라요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px;">
+                                    <div class="card" style="width: 300px; height: 220px;">
                                         <div class="card-body">
                                             <h5 class="card-title">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="card-link">몰라요로 옮기기</a>
-                                            <a href="#" class="card-link">북마크하기</a>
+                                            <p class="card-text">단어 설명</p>
+                                            <div class="bookmarkBtn">
+                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
+                                            </div>
+                                            <button class="moveBtn">몰라요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
@@ -347,10 +373,36 @@
                 document.body.className = '';
             });
         });
+
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
+    <script>
+        // var i = 0;
+        // $('.bi-bookmark-star').on('click',function(){
+        //     if(i==0){
+        //         $(this).removeClass('bi-bookmark-star');
+        //         $(this).addClass('bi-bookmark-star-fill');
+        //         i++;
+        //     }else if(i==1){
+        //         $(this).removeClass('bi-bookmark-star-fill');
+        //         $(this).addClass('bi-bookmark-star');
+        //         i--;
+        //     }
+        //
+        // });
+
+        var i = 0;
+        $('.bi-bookmark-star').on('click',function () {
+            if(i==0){
+                $(this).attr('class','bi-bookmark-star-fill');
+                i++;
+            }
+            else if(i==1){
+                $(this).attr('class','bi-bookmark-star');
+                i--;
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </div>
 </body>
 </html>

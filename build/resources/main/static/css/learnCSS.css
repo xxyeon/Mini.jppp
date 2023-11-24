@@ -21,7 +21,7 @@ body.fade{
     right: 50%;
     border-radius: 50px;
     width: 868px;
-    height: 550px;
+    height: 600px;
     margin-left: 0;
     border: 2px solid rgb(166, 166, 166);
     background-color: white;
@@ -104,18 +104,22 @@ body.fade{
     align-items: center;
 }
 
-.carousel-inner #answer:hover, .carousel-inner #answer p:hover, .carousel-inner #answer:focus, .carousel-inner #answer p:focus {
+.carousel-inner #answer:hover,
+.carousel-inner #answer p:hover,
+.carousel-inner #answer:focus,
+.carousel-inner #answer p:focus {
     /* 마우스를 올리면 보이게 처리 */
     opacity: 1;
 }
 
 .choose_btn{
-     position: relative;
+     position: absolute;
      width: 300px;
-     bottom: 5%;
+     bottom: -30%;
      left: 50%;
      margin-left: -150px;
 }
+
 #answer p{
     word-break: keep-all;
     /*white-space:pre-line;*/
