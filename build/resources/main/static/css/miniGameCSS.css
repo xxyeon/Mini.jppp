@@ -22,3 +22,24 @@ body.fade{
     color: white;
 }
 
+.btn-play{
+    border-radius: 20px;
+    border: none;
+    width: 180px;
+    height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+#modal-btn{
+    border-radius: 20px;
+    border: none;
+    width: 180px;
+    height: 40px;
+    background-color: rgba(183,183,183,0.74);
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}

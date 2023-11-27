@@ -24,7 +24,7 @@ public class WordRepository {
     private ArrayList<Chapter> chapters;
 
     // 총 단어 수
-    public int wordCount = 0;
+    int wordCount;
 
     public List<Word> findByChapter(int chapterId) throws SQLException {
         String sql = "select * from WORD where chapter_id = ?";
@@ -34,6 +34,7 @@ public class WordRepository {
         ResultSet rs = null;
 
         try {
+            wordCount = 0;
             wordList = new ArrayList<>();
             con = getConnection();
             pstmt = con.prepareStatement(sql);

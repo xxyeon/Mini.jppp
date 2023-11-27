@@ -45,7 +45,9 @@ public class WordController {
     }
 
     @GetMapping("/miniGame")
-    public String miniGame() {
+    public String miniGame(Model model) {
+        ArrayList<Chapter> chapters = wordRepository.findAllChapter();
+        model.addAttribute("chapters", chapters);
         return"main/miniGame";
     }
 
