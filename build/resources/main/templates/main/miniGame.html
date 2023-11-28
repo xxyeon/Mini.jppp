@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="fade">
     <div class="all">
@@ -124,99 +125,69 @@
                     <div class="container">
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                             <div class="col">
-                                <div class="card shadow-sm" style="height: 380px">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">
-                                        틱택토 게임</text></svg>
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/tictacImg.png}" src="../img/tictacImg.png"></div>
+                                        <label class="game-name">틱택토 게임</label>
+                                    </div>
                                     <div class="card-body">
                                         <p class="card-text">친구와 함께 틱택토 게임을 플레이해보세요.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">코드</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">개념</button>
-                                            </div>
                                             <small class="text-body-secondary">난이도 하</small>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card shadow-sm" style="height: 380px">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">
-                                        행맨 게임</text></svg>
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/hangman.jpeg}" src="../img/hangman.jpeg"></div>
+                                        <label class="game-name">행맨 게임</label>
+                                    </div>
                                     <div class="card-body">
                                         <p class="card-text">행맨 게임으로 랜덤 영어 단어를 맞혀보세요.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">코드</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">개념</button>
-                                            </div>
                                             <small class="text-body-secondary">난이도 하</small>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card shadow-sm" style="height: 380px">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="35%" y="50%" fill="#eceeef" dy=".3em">
-                                        숫자 야구 게임</text></svg>
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/baseball.jpeg}" src="../img/baseball.jpeg"></div>
+                                        <label class="game-name">숫자 야구 게임</label>
+                                    </div>
                                     <div class="card-body">
                                         <p class="card-text">입력하는 숫자에 따라 스트라이크, 볼 혹은 아웃! 어떤 숫자가 답일지 유추해보세요.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">코드</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">개념</button>
-                                            </div>
                                             <small class="text-body-secondary">난이도 중</small>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col">
-                                <div class="card shadow-sm" style="height: 380px">
+                                <div class="card shadow-sm" style="height: 350px">
                                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                                         <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">레벨 업 게임</text></svg>
                                     <div class="card-body">
                                         <p class="card-text">최고 레벨이 되어 최강 용사로 등극! 힘을 입력하여 상대방을 쓰러뜨려봅시다.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">코드</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">개념</button>
-                                            </div>
                                             <small class="text-body-secondary">난이도 중</small>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card shadow-sm" style="height: 380px">
+                                <div class="card shadow-sm" style="height: 350px">
                                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                                         <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">게임 5</text></svg>
                                     <div class="card-body">
                                         <p class="card-text">게임 설명</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">코드</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">개념</button>
-                                            </div>
                                             <small class="text-body-secondary">난이도 중</small>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card shadow-sm" style="height: 380px">
+                                <div class="card shadow-sm" style="height: 350px">
                                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                                         <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">게임 6</text></svg>
                                     <div class="card-body">
                                         <p class="card-text">게임 설명</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">코드</button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">개념</button>
-                                            </div>
                                             <small class="text-body-secondary">난이도 중</small>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -230,6 +201,14 @@
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(function () {
                 document.body.className = '';
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-play').click(function () {
+                var offset = $('.album').offset();
+                $('html').animate({scrollTop: offset.top}, 50);
             });
         });
     </script>

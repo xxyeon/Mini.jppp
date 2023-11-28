@@ -13,7 +13,8 @@ logo > a{
 }
 
 .all{
-    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
 }
 
 .cover-container {

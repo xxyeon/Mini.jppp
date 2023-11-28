@@ -51,5 +51,8 @@ public class WordController {
         return"main/miniGame";
     }
 
-
+    @GetMapping("/tictactoe")
+    public String tictactoe() {
+        return"main/tictactoe";
+    }
 }

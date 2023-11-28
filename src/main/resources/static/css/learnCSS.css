@@ -95,7 +95,6 @@ body.fade{
     left: 0;
     color: #fff;
     text-align: center;
-    /*line-height: 350px;  --> 개행 안된 이유 */
     opacity: 0;
     /* 처음엔 안보이고 */
     transition: 0.3s;

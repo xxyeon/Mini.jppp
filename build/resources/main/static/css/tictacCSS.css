@@ -1,0 +1,46 @@
+body {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+    background-color: rgb(31,34,38) !important;
+}
+
+body.fade{
+    opacity: 0;
+}
+
+.p-3{
+
+}
+
+#all{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    position: relative;
+    top: 100px;
+    left: 50%;
+    border-radius: 30px;
+    width: 1200px;
+    height: 650px;
+    margin-left: -600px;
+    border: 2px solid rgb(166, 166, 166);
+    background-color: white;
+}
+
+.scrollspy-example {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 600px;
+    height: 400px;
+    border-radius: 15px;
+    overflow: scroll;
+}
+
+.colorscripter-code {
+    font-size: 10pt;
+    background-color: rgb(31,34,38);
+}
+
+.colorscripter-code::-webkit-scrollbar{
+    display: none;
+}
