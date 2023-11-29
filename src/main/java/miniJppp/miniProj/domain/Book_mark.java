@@ -9,4 +9,5 @@ public class Book_mark {
 
     private int book_mark_id;
     private LocalTime create_at;
+    private int member_id;
 }

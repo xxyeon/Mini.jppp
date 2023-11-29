@@ -24,7 +24,7 @@ public class WordRepository {
     private ArrayList<Chapter> chapters;
 
     public List<Word> findByChapter(int chapterId) throws SQLException {
-        String sql = "select * from word where chapter_id = ?";
+        String sql = "select * from WORD where chapter_id = ?";
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -57,7 +57,7 @@ public class WordRepository {
 
     public ArrayList<Chapter> findAllChapter() {
         chapters = new ArrayList<>();
-        String sql = "select * from chapter";
+        String sql = "select * from CHAPTER";
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -82,9 +82,38 @@ public class WordRepository {
 
     }
 
+    public ArrayList<Word> findById(List<Integer> wordIdList) {
+        String sql = "select * from WORD where word_id in (?)";
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try{
+            ArrayList<Word> wordList = new ArrayList<>();
+            con = getConnection();
+            pstmt = con.prepareStatement(sql);
+
+            pstmt.setArray(1, getConnection().createArrayOf("word", new List[]{wordIdList})); // 보류
+            System.out.println("wordList = " + wordList);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Word word = new Word(rs.getInt("word_id"), rs.getString("word"), rs.getString("answer"));
+
+                wordList.add(word);
+            }
+            System.out.println("wordList = " + wordList);
+            return wordList;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close(con, pstmt, rs);
+        }
+    }
 
 
-    private void close(Connection con, Statement stmt, ResultSet rs) {
+    public void close(Connection con, Statement stmt, ResultSet rs) {
 
         JdbcUtils.closeResultSet(rs);
         JdbcUtils.closeStatement(stmt);

@@ -11,7 +11,7 @@ public class Member {
     private String name;
     private String profileImgUrl;
     private LocalTime create_at;
-    private int inventory_id;
-    private int book_mark_id;
 
+    public Member() {
+    }
 }
