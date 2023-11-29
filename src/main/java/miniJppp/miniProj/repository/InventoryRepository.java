@@ -131,5 +131,6 @@ public class InventoryRepository {
     public Connection getConnection() {
         Connection con = DataSourceUtils.getConnection(dataSource);
         return con;
+
     }
 }

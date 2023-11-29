@@ -23,6 +23,9 @@ public class WordRepository {
     private List<Word> wordList;
     private ArrayList<Chapter> chapters;
 
+    // 총 단어 수
+    int wordCount;
+
     public List<Word> findByChapter(int chapterId) throws SQLException {
         String sql = "select * from WORD where chapter_id = ?";
 
@@ -31,6 +34,7 @@ public class WordRepository {
         ResultSet rs = null;
 
         try {
+            wordCount = 0;
             wordList = new ArrayList<>();
             con = getConnection();
             pstmt = con.prepareStatement(sql);
@@ -39,11 +43,10 @@ public class WordRepository {
             pstmt.setInt(1, chapterId);
             rs = pstmt.executeQuery();
 
-
             while (rs.next()) {
                 Word word = new Word(rs.getInt("word_id"), rs.getString("word"), rs.getString("answer"));
-
                 wordList.add(word);
+                wordCount++;
             }
             return wordList;
 
@@ -53,6 +56,10 @@ public class WordRepository {
         } finally {
             close(con, pstmt, rs);
         }
+    }
+
+    public int wordTotal(){
+        return wordCount;
     }
 
     public ArrayList<Chapter> findAllChapter() {

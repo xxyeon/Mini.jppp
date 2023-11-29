@@ -1,3 +1,13 @@
+body{
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+body.fade{
+    opacity: 0;
+}
+
 #logo>a {
     color: black;
 }
@@ -39,11 +49,7 @@ body{
 .modal-content {
     position: fixed;
     top: 20%;
-}
-
-.modal-content > div {
     font-family: 'IBM Plex Sans KR', sans-serif;
-    font-weight: 300 !important;
 }
 
 .modal-bg{
@@ -55,6 +61,15 @@ body{
     background-color: rgba(0,0,0,0.5);
     z-index : -1;
 }
+
+.accordion-body{
+    text-align: center;
+}
+
+.accordion-body :hover{
+    font-weight: 500;
+}
+
 
 #p-title{
     font-size: 20px;
@@ -127,3 +142,26 @@ input[type="radio"]{
     border-radius: 20px;
     padding: 2%;
 }
+
+.moveBtn {
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    border-radius: 25px;
+    border: none;
+    width: 130px;
+    height: 35px;
+    background-color: #0d6efd;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/*카드 안에 있음*/
+.bookmarkBtn {
+    position: absolute;
+    top: 6%;
+    right: 5%;
+}
+

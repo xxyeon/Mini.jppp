@@ -56,40 +56,34 @@ public class WordController {
     @GetMapping("/learn/{chapterId}")
     public String learn(@PathVariable("chapterId") int chapter_id, Model model) throws SQLException {
         List<Word> words = wordRepository.findByChapter(chapter_id);
-//        Member member = userReposiotry.findUser(name);
         model.addAttribute("words", words);
-//        model.addAttribute("Member", member);
-
-        return "main/ww_learn";
+        int wordCount = wordRepository.wordTotal();
+        model.addAttribute("wordTotal", wordCount);
+        return"main/ww_learn";
     }
 
     //인벤토리 api
 
     @GetMapping("/{name}/inventory") //인벤토리 조회
-    public String inventory(@PathVariable("name") String name) {
+    public String inventory(@PathVariable("name") String name, Model model) {
         int member_id = userReposiotry.findUser(name).getMember_id();
         List<Integer> wordIdArray = inventoryRepository.findById(member_id);
         ArrayList<Word> words = wordRepository.findById(wordIdArray);
+        ArrayList<Chapter> chapters = wordRepository.findAllChapter();
+        model.addAttribute("chapters", chapters);
 
         return "main/inventory";
     }
 
-    //쿼리 파라미터로 단어 index 전달
-    // /yeon/inventory
-    @ResponseBody
-    @PostMapping("/{name}/inventory")
-    public String addInventory(@PathVariable String name, @RequestParam("wordIdx") int wordIdx) {
-
-        inventoryRepository.save(wordIdx, userReposiotry.findUser(name).getMember_id());
-
-        return "ok";
+    @GetMapping("/miniGame")
+    public String miniGame(Model model) {
+        ArrayList<Chapter> chapters = wordRepository.findAllChapter();
+        model.addAttribute("chapters", chapters);
+        return"main/miniGame";
     }
 
-    @GetMapping("/{name}/mypage")
-    @ResponseBody
-    public String getMypage(@PathVariable String name, Model model) {
-        Member member = userReposiotry.findUser(name);
-        model.addAttribute("member", member);
-        return "ok";
+    @GetMapping("/tictactoe")
+    public String tictactoe() {
+        return"main/tictactoe";
     }
 }

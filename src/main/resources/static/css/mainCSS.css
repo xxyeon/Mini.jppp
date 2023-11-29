@@ -1,13 +1,34 @@
-#logo > a{
+body{
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+body.fade{
+    opacity: 0;
+}
+
+logo > a{
     color: black;
 }
 
 .all{
-    margin-bottom: 200px;
+    display: flex;
+    align-items: center;
 }
 
 .cover-container {
     max-width: 42em;
+}
+
+#under-header{
+    position: absolute;
+    top: 50%;
+    height: 500px;
+    margin-top: -250px;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
 }
 
 .ex-pic{
@@ -33,9 +54,10 @@
     text-align: center;
     top: 70%;
     left: 50%;
-    margin-left: -400px;
-    width: 800px;
+    margin-left: -500px;
+    width: 1000px;
 }
+
 
 #go-to-learn{
     position: absolute;
@@ -43,6 +65,7 @@
     left: 45%;
     margin-left: -50px;
     font-size: 15pt;
+    margin-bottom: 20%;
 }
 
 #modal-btn{
@@ -52,6 +75,7 @@
     height: 40px;
     background-color: #0d6efd;
     color: white;
+    font-weight: 300;
 }
 
 .modal {
@@ -77,12 +101,8 @@
     z-index : -1;
 }
 
-.accordion-body button {
-    border: none;
-    background-color: transparent
+.accordion-body :hover{
+    font-weight: 500;
 }
 
-.accordion-body button:hover {
-    font-weight: bold;
-}
 
