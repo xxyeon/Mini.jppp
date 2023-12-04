@@ -68,9 +68,14 @@ public class WordController {
     public String inventory(@PathVariable("name") String name, Model model) {
         int member_id = userReposiotry.findUser(name).getMember_id();
         List<Integer> wordIdArray = inventoryRepository.findById(member_id);
-        ArrayList<Word> words = wordRepository.findById(wordIdArray);
+        ArrayList<Word> words = new ArrayList<>();
+        for (int i=0; i < wordIdArray.size(); i++){
+            words.add(wordRepository.findById(wordIdArray.get(i)));
+        }
+        System.out.println(words);
         ArrayList<Chapter> chapters = wordRepository.findAllChapter();
         model.addAttribute("chapters", chapters);
+        model.addAttribute("words", words);
 
         return "main/inventory";
     }

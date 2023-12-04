@@ -89,8 +89,8 @@ public class WordRepository {
 
     }
 
-    public ArrayList<Word> findById(List<Integer> wordIdList) {
-        String sql = "select * from WORD where word_id in (?)";
+    public Word findById(int wordId) {
+        String sql = "select * from WORD where word_id = ?";
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -100,17 +100,16 @@ public class WordRepository {
             con = getConnection();
             pstmt = con.prepareStatement(sql);
 
-            pstmt.setArray(1, getConnection().createArrayOf("word", new List[]{wordIdList})); // 보류
+            pstmt.setInt(1, wordId); // 쿼리 배열 검색 해결하기
             System.out.println("wordList = " + wordList);
             rs = pstmt.executeQuery();
 
+            Word word = null;
             while (rs.next()) {
-                Word word = new Word(rs.getInt("word_id"), rs.getString("word"), rs.getString("answer"));
-
-                wordList.add(word);
+                word = new Word(rs.getInt("word_id"), rs.getString("word"), rs.getString("answer"), rs.getInt("chapter_id"));
             }
             System.out.println("wordList = " + wordList);
-            return wordList;
+            return word;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
