@@ -6,8 +6,9 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "BOOK_MARK")
 @Getter
-public class BookMark {
+public class BookMark { //쿼리 예약어와 겹칩
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_mark_id")
