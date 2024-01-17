@@ -1,10 +1,16 @@
 package miniJppp.miniProj.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@NoArgsConstructor
 public class Chapter {
 
     @Id
@@ -14,4 +20,11 @@ public class Chapter {
 
     @Column
     private String title;
+
+    @Column
+    private String number;
+
+    @OneToMany(mappedBy = "chapter")
+    List<Word> wordList = new ArrayList<>();
+
 }

@@ -1,8 +1,10 @@
 package miniJppp.miniProj.entity;
 
 import lombok.Getter;
+import org.springframework.cglib.core.Local;
 
 import javax.persistence.*;
+import java.awt.font.TextHitInfo;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,4 +24,12 @@ public class Member {
     @Column(name = "create_at")
     private LocalDateTime createAt;
 
+    public Member(String name, String profileImgUrl, LocalDateTime createAt) {
+        this.name = name;
+        this.profileImgUrl = profileImgUrl;
+        this.createAt = createAt;
+    }
+
+    public Member() {
+    }
 }
