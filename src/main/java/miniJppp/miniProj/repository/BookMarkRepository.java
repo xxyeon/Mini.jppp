@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface BookMarkRepository extends JpaRepository<BookMark, Long> {
 
-//    private final List<Book_mark> bookMarks = new ArrayList<>();
-
     public List<BookMark> findAll();
 
 

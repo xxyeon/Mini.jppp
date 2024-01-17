@@ -38,19 +38,7 @@ public class WordController {
     @GetMapping("/{name}")
     public String memberMainPage(@PathVariable String name, Model model) {
 
-        /*Member member = userReposiotry.findByName(name);
-        System.out.println("member = " + member);
-        if(member.getName() == null){
-            userReposiotry.save(name);
-            Member newmember = userReposiotry.findUser(name);
-            int member_id = newmember.getMember_id();
-            inventoryRepository.create(member_id);
-        }*/
         MemberDto memberDto = memberService.saveMember(new Member(name, "", LocalDateTime.now()));
-//        Member newmember = memberRepository.findByName(name);
-        //인벤토리 생성 후 (인벤토리 이름 name+'인벤토리')
-//        Inventory inventory = inventoryRepository.findByName(name+INVENTORY);
-//        userReposiotry.updateMemberInventoroy(inventory.getInventory_id()); //member 테이블에 인벤토리 fk 설정
 
         List<Chapter> chapters = chapterRespository.findAll();
         System.out.println("chapters: " + chapters.get(1).getNumber());
@@ -74,13 +62,10 @@ public class WordController {
     public String inventory(@PathVariable("name") String name, Model model) {
         MemberDto memberDto = memberService.findMember(name);
         Long member_id = memberDto.getId();
-//        List<Integer> wordIdArray = inventoryRepository.findByMember_id(member_id);
+
         Inventory memberInventory= inventoryRepository.findByMember_id(member_id);
         List<Word> words = inventoryService.getInventoryWordList(memberInventory);
-        /*for (int i=0; i < wordIdArray.size(); i++){
-            words.add(wordRepository.findById(wordIdArray.get(i)));
-        }*/
-        System.out.println(words);
+
         List<Chapter> chapters = chapterRespository.findAll();
         model.addAttribute("chapters", chapters);
         model.addAttribute("words", words);
