@@ -1,31 +1,34 @@
 package miniJppp.miniProj.repository;
 
 import lombok.RequiredArgsConstructor;
-import miniJppp.miniProj.domain.Inventory;
+import miniJppp.miniProj.entity.Inventory;
 import miniJppp.miniProj.domain.Learn;
-import miniJppp.miniProj.domain.Member;
+import miniJppp.miniProj.entity.Member;
 import miniJppp.miniProj.domain.Word;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Repository
-@RequiredArgsConstructor
-public class InventoryRepository {
-    public static final String INVENTORY = "인벤토리";
+public interface InventoryRepository extends JpaRepository<Inventory, Long> {
+/*    public static final String INVENTORY = "인벤토리";
     private final DataSource dataSource;
-    private final List<Inventory> inventories = new ArrayList<>();
+    private final List<Inventory> inventories = new ArrayList<>();*/
 
-    public List<Inventory> findAll() {
-        return inventories;
-    }
-    public List<Integer> findById(int member_id) {
+    public List<Inventory> findAll();
+
+    public Inventory findByMember_id(Long memberId);
+
+    public Inventory save(Inventory inventory);
+    /*public List<Integer> findById(int member_id) {
         String sql = "select word_id from learn where inventory_id = select inventory_id from INVENTORY where member_id = ?";
 
 
@@ -132,5 +135,5 @@ public class InventoryRepository {
         Connection con = DataSourceUtils.getConnection(dataSource);
         return con;
 
-    }
+    }*/
 }

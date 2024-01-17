@@ -1,31 +1,30 @@
 package miniJppp.miniProj.repository;
 
-import lombok.RequiredArgsConstructor;
-import miniJppp.miniProj.domain.Member;
-import org.springframework.jdbc.datasource.DataSourceUtils;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
-import java.sql.*;
-import java.util.ArrayList;
+import miniJppp.miniProj.entity.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@Repository
-@RequiredArgsConstructor
-public class UserRepository {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    private final DataSource dataSource;
-    public int member_id = 0;
+ /*   private final DataSource dataSource;
+    public int member_id = 0;*/
 
-    public Member findUser(String name) {
+    public Member findByName(String name);
+
+    public Member save(Member member);
+
+  /*  public Member findUser(String name) {
         String nickname;
         String sql = "select member_id, name, profileimgurl from MEMBER where name = ?";
 
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        try{
+        try {
             con = getConnection();
             pstmt = con.prepareStatement(sql);
 
@@ -45,12 +44,11 @@ public class UserRepository {
         } finally {
             close(con, pstmt, rs);
         }
-    }
-    public List<Member> findAll() {
-        return null;
-    }
+    }*/
 
-    public void save(String name) {
+    public List<Member> findAll();
+
+/*    public void save(String name) {
         String sql = "insert into MEMBER (name, create_at) values (?, ?)";
 
         Connection con = null;
@@ -58,7 +56,7 @@ public class UserRepository {
 
         int rs = 0;
 
-        try{
+        try {
 
             con = getConnection();
             pstmt = con.prepareStatement(sql);
@@ -75,7 +73,7 @@ public class UserRepository {
         } finally {
             close(con, pstmt);
         }
-    }
+    }*/
 
 //    public void updateMemberInventoroy(int inventoryId){
 //        String sql = "update Member set inventory_id = ?";
@@ -96,7 +94,7 @@ public class UserRepository {
 //        }
 //    }
 
-    public void close(Connection con, Statement stmt, ResultSet rs) {
+ /*   public void close(Connection con, Statement stmt, ResultSet rs) {
 
         JdbcUtils.closeResultSet(rs);
         JdbcUtils.closeStatement(stmt);
@@ -105,6 +103,7 @@ public class UserRepository {
 
 
     }
+
     public void close(Connection con, Statement stmt) {
 
         JdbcUtils.closeStatement(stmt);
@@ -118,5 +117,5 @@ public class UserRepository {
         Connection con = DataSourceUtils.getConnection(dataSource);
         return con;
     }
-
+*/
 }

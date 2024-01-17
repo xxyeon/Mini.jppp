@@ -2,31 +2,29 @@ package miniJppp.miniProj.repository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import miniJppp.miniProj.domain.Chapter;
-import miniJppp.miniProj.domain.Word;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.support.JdbcUtils;
-
+import miniJppp.miniProj.entity.*;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+public interface WordRepository extends JpaRepository<Word, Long> {
 
-@RequiredArgsConstructor
-@Slf4j
-@Repository
-public class WordRepository {
-
-    private final DataSource dataSource;
-    private List<Word> wordList;
-    private ArrayList<Chapter> chapters;
+//    private final DataSource dataSource;
+//    private List<Word> wordList;
+//    private ArrayList<Chapter> chapters;
 
     // 총 단어 수
-    int wordCount;
+//    int wordCount;
+    public List<Word> findAllByChapter_Id(Long chapterId);
 
-    public List<Word> findByChapter(int chapterId) throws SQLException {
+  /*  public List<Word> findByChapter(int chapterId) throws SQLException {
         String sql = "select * from WORD where chapter_id = ?";
 
         Connection con = null;
@@ -133,6 +131,6 @@ public class WordRepository {
         Connection con = DataSourceUtils.getConnection(dataSource);
         return con;
     }
-
+*/
 
 }

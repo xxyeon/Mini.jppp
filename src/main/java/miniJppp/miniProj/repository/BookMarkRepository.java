@@ -2,25 +2,18 @@ package miniJppp.miniProj.repository;
 
 import miniJppp.miniProj.domain.Book_mark;
 import miniJppp.miniProj.domain.Review;
+import miniJppp.miniProj.entity.BookMark;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class BookMarkRepository {
+public interface BookMarkRepository extends JpaRepository<BookMark, Long> {
 
-    private final List<Book_mark> bookMarks = new ArrayList<>();
+//    private final List<Book_mark> bookMarks = new ArrayList<>();
 
-    public List<Book_mark> findAll() {
-        return bookMarks;
-    }
+    public List<BookMark> findAll();
 
-    public void save(Review review, Book_mark bookMark) {
 
-    }
-
-    public void deleteById(Review review, Book_mark bookMark) {
-
-    }
 }
