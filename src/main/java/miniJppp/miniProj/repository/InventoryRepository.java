@@ -1,21 +1,7 @@
 package miniJppp.miniProj.repository;
 
-import lombok.RequiredArgsConstructor;
 import miniJppp.miniProj.entity.Inventory;
-import miniJppp.miniProj.domain.Learn;
-import miniJppp.miniProj.entity.Member;
-import miniJppp.miniProj.domain.Word;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.jdbc.datasource.DataSourceUtils;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.sql.DataSource;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
