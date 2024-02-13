@@ -18,10 +18,9 @@ public class Chapter {
     @Column(name = "chapter_id")
     private Long id;
 
-    @Column
     private String title;
 
-    @Column
+
     private String number;
 
     @OneToMany(mappedBy = "chapter")

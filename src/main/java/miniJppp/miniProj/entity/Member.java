@@ -1,14 +1,18 @@
 package miniJppp.miniProj.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import org.springframework.cglib.core.Local;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.awt.font.TextHitInfo;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
+@Setter
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +27,11 @@ public class Member {
 
     @Column(name = "create_at")
     private LocalDateTime createAt;
+
+    private String email;
+    private String password;
+    private String provider;
+    private String providerId;
 
     public Member(String name, String profileImgUrl, LocalDateTime createAt) {
         this.name = name;

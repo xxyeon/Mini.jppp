@@ -56,29 +56,30 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Sign up</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Sign up Form</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
+                                <form name="signUpForm" action="/join" method="post">
                                 <div class="modal-body">
-                                    <form action="/join" method="post">
+
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput" class="form-label">Email Address</label>
-                                            <input name="email" type="text" class="form-control" id="formGroupExampleInput" placeholder="enter your email">
+                                            <label for="signUpGroupExampleInput" class="form-label">Email Address</label>
+                                            <input name="email" type="email" class="form-control" id="signUpGroupExampleInput" placeholder="enter your email">
                                         </div>
                                         <div class="mb-3">
-                                           <label for="formGroupExampleInput2" class="form-label">Nickname</label>
-                                            <input name="nickname" type="text" class="form-control" id="formGroupExampleInput2" placeholder="enter your nickname">
+                                           <label for="signUpGroupExampleInput2" class="form-label">Nickname</label>
+                                            <input name="name" type="text" class="form-control" id="signUpGroupExampleInput2" placeholder="enter your nickname">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput2" class="form-label">Password</label>
-                                            <input name="password" type="text" class="form-control" id="formGroupExampleInput3" placeholder="enter your password">
+                                            <label for="signUpGroupExampleInput2" class="form-label">Password</label>
+                                            <input name="password" type="password" class="form-control" id="signUpGroupExampleInput3" placeholder="enter your password">
                                         </div>
-                                        <button id="googleBtn" onclick=location.href='/oauth2/authorization/google'><img th:attr="src=@{img/google.png}" src="../img/google.png"></button>
+                                </div>
                                         <div class="modal-footer">
-                                            <input type="submit" value="Submit" class="btn btn-primary" data-bs-target="#signUpModalToggle2" data-bs-toggle="modal">
+                                            <input type="submit" value="Sign Up" class="btn btn-primary" data-bs-toggle="modal">
                                         </div>
                                     </form>
-                                    </div>
+
 
                             </div>
                         </div>
@@ -86,10 +87,6 @@
                     <div class="modal fade" id="signUpModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"></h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
                                 <div class="modal-body">
                                     회원가입 완료!
                                 </div>
@@ -103,21 +100,24 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="signInModalToggleLabel">Sign up</h1>
+                                <h1 class="modal-title fs-5" id="signInModalToggleLabel">Sign In Form</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="formGroupExampleInput" class="form-label">Email Address</label>
-                                    <input type="text" class="form-control" id="signInGroupExampleInput" placeholder="enter your email">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formGroupExampleInput2" class="form-label">Password</label>
-                                    <input type="text" class="form-control" id="signInGroupExampleInput2" placeholder="enter your password">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" data-bs-target="#signInModalToggle2" data-bs-toggle="modal">Submit</button>
+                                <form name="signInForm" action="/login" method="post">
+                                    <div class="mb-3">
+                                        <label for="signInGroupExampleInput" class="form-label">Nickname</label>
+                                        <input name="name" type="text" class="form-control" id="signInGroupExampleInput" placeholder="enter your nickname">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signInGroupExampleInput2" class="form-label">Password</label>
+                                        <input name="password" type="password" class="form-control" id="signInGroupExampleInput2" placeholder="enter your password">
+                                    </div>
+                                    <button type="button" id="googleBtn" onclick=location.href='/oauth2/authorization/google'><img th:attr="src=@{img/google.png}" src="../img/google.png"></button>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Sign In" class="btn btn-primary" data-bs-toggle="modal">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

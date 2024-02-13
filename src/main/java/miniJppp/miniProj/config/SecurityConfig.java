@@ -1,5 +1,6 @@
 package  miniJppp.miniProj.config;
 
+import miniJppp.miniProj.config.auth.CustomAuthenticationFailureHandler;
 import miniJppp.miniProj.oauth.PrincipalOauth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,26 +12,45 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.templatemode.TemplateMode;
+
 
 @Configuration
 @EnableWebSecurity //스프링 시큐리티 필터(SecurityConfig)가 스프링 필터체인에 등록된다.
-@EnableMethodSecurity(securedEnabled=true, prePostEnabled = true) //강의에서는 @EnableGlobalMethodSecurity를 사용했으나 지금은 Deprecated여서 EnableMethodSecurity로 변경
-public class SecurityConfig{
+@EnableMethodSecurity(securedEnabled=true, prePostEnabled = true)
+public class SecurityConfig {
+
 
     @Autowired
     private PrincipalOauth2UserService principalOauth2UserService;
 
     //패스워드 암호화
-    //해당 메서드의 리턴되는 오브젝트를 IoC로 등록해준다.
-//    @Bean
-//    public BCryptPasswordEncoder encodePwd(){
-//        return new BCryptPasswordEncoder();
-//    }
 
+
+    @Bean
+    public SpringResourceTemplateResolver templateResolver() {
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setPrefix("classpath:/templates");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
+        return templateResolver;
+    }
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new CustomAuthenticationFailureHandler();
+    }
+    @Bean
+    public BCryptPasswordEncoder encodePwd() {
+        return new BCryptPasswordEncoder();
+    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf((csrfConfig) ->
@@ -39,22 +59,26 @@ public class SecurityConfig{
         http
                 .authorizeRequests()
                 .requestMatchers(new AntPathRequestMatcher("/test/**")).authenticated() //이런 주소로 들어오면 인증이 필요함
-                .requestMatchers(new AntPathRequestMatcher("/main/**")).authenticated() //이런 주소로 들어오면 인증이 필요함
+//                .requestMatchers(new AntPathRequestMatcher("/main/**")).authenticated() //이런 주소로 들어오면 인증이 필요함
 
                 .anyRequest().permitAll()
                                 .and()
 
-                                .formLogin(formLogin -> formLogin
+                                .formLogin()
                                         .loginPage("/main-page")//-> 권한이 없는 페이지에 접근했을 때 /login으로 이동
                                         .loginProcessingUrl("/login") // /login 주소가 호출되면 시큐리티가 낚아채서 대신 로그인 진행 controller에 /login을 따로 만들지 않아도됨
+                                        .defaultSuccessUrl("/") // 로그인 성공 후 이동 페이지
+                                        .usernameParameter("name")
+                                        .passwordParameter("password") // 패스워드 파라미터명 설정, default: password
+                                        .failureHandler(authenticationFailureHandler())
+                .and()
 
-
-                                );
-        http
-                .oauth2Login(Customizer.withDefaults())
-//                .userDetailsService((UserDetailsService) principalOauth2UserService)
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/main-page"));
+                .oauth2Login()
+                .loginPage("/main-page")
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);
 
 
         return http.build();
