@@ -41,11 +41,6 @@ public class oauthLoginContorller {
 
     @PostMapping("/join")
     public String join(Member member) {
-//        MemberDto memberDto = MemberDto.builder()
-//                .email(email)
-//                .createAt(LocalDateTime.now())
-//                .name(nickname)
-//                .password(bCryptPasswordEncoder.encode(password)).build();
         System.out.println("Member: " + member.getEmail());
         String encPassword = bCryptPasswordEncoder.encode(member.getPassword());
         member.setPassword(encPassword);
@@ -54,20 +49,7 @@ public class oauthLoginContorller {
         return "redirect:/main-page";
     }
 
-//    @PostMapping("/login")
-//    public String login(Model model, @RequestParam("email") String email, @RequestParam("password") String password) {
-//        MemberDto memberDto = MemberDto.builder()
-//                .email(email)
-//                .password(password).build();
-//        memberService.login(memberDto);
-//        List<Chapter> chapters = chapterRespository.findAll();
-//        System.out.println("chapters: " + chapters.get(1).getNumber());
-//        model.addAttribute("chapters", chapters);
-//        model.addAttribute("member", memberDto);
-//        return "main/ww_main";
-//    }
-
-    /* 로그인 */
+    /* 로그인 오류시 호출*/
     @GetMapping("/auth/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception,
@@ -78,23 +60,7 @@ public class oauthLoginContorller {
         model.addAttribute("exception", exception);
         return "/main/user-login";
     }
-//    @ResponseBody
-//    @GetMapping("/")
-//    public String memberMainPage(Model model) {
-//
-//        /*MemberDto memberDto = MemberDto.builder()
-//                .email(principalDetails.getUser().getEmail())
-//                .password(principalDetails.getUser().getPassword()).build();
-//        System.out.println("user객체(PrincipalDetails.getUser: " + principalDetails.getUser());
-//
-//
-//        List<Chapter> chapters = chapterRespository.findAll();
-//        System.out.println("chapters: " + chapters.get(1).getNumber());
-//        model.addAttribute("chapters", chapters);
-//        model.addAttribute("member", memberDto);
-//        return "main/ww_main";*/
-//        return "user";
-//    }
+
     @GetMapping("/")
     public String memberMainPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
 
@@ -107,12 +73,4 @@ public class oauthLoginContorller {
         return "/main/ww_main";
     }
 
-//    @PostMapping("/login")
-//    public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
-//        MemberDto memberDto = MemberDto.builder()
-//                .password(password)
-//                .email(email).build();
-//        memberService.login(memberDto);
-//        return "redirect:/main";
-//    }
 }

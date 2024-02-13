@@ -58,8 +58,7 @@ public class SecurityConfig {
         );
         http
                 .authorizeRequests()
-                .requestMatchers(new AntPathRequestMatcher("/test/**")).authenticated() //이런 주소로 들어오면 인증이 필요함
-//                .requestMatchers(new AntPathRequestMatcher("/main/**")).authenticated() //이런 주소로 들어오면 인증이 필요함
+                .requestMatchers(new AntPathRequestMatcher("/main/**")).authenticated()
 
                 .anyRequest().permitAll()
                                 .and()
