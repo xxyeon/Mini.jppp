@@ -99,7 +99,7 @@
                       <p>이름</p>
                     </div>
                     <div class="col">
-                      <textarea>홍길동</textarea>
+                      <textarea th:text="${member.nickname}">홍길동</textarea>
                     </div>
                   </div>
                   <div class="row">
@@ -107,7 +107,7 @@
                       <p>소개글</p>
                     </div>
                     <div class="col">
-                      <textarea>안녕하세요 홍길동입니다!</textarea>
+                      <textarea>안녕하세요 [[${member.nickname}]]입니다!</textarea>
                     </div>
                   </div>
                   <div class="row">
@@ -155,14 +155,14 @@
                       <p>이메일</p>
                     </div>
                     <div class="col" style="text-align: right">
-                      <p style="font-weight: 300">gildong@gmail.com</p>
+                      <p style="font-weight: 300" th:text="${member.getEmail()}">gildong@gmail.com</p>
                     </div>
                   </div>
                   <hr>
                   <p>비밀번호</p>
                   <div class="row">
                     <div class="col">
-                      <p style="font-weight: 300">최근 업데이트: 2024-02-01</p>
+                      <p style="font-weight: 300" th:text="${member.updateAt}">최근 업데이트: 2024-02-01</p>
                     </div>
                     <div class="col" style="text-align: right">
                       <button id="btn-change-password">비밀번호 변경하기</button>

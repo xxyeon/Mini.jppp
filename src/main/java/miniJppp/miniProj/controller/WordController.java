@@ -101,7 +101,14 @@ public class WordController {
     }
 
     @GetMapping("/profile")
-    public String profile() {
+    public String profile(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        Member member = principalDetails.getUser();
+        MemberDto memberDto = MemberDto.builder()
+                .nickname(member.getName())
+                .email(member.getEmail())
+                .updateAt(member.getUpdateAt())
+                .build();
+        model.addAttribute("member", memberDto);
         return"/main/profile";
     }
 }

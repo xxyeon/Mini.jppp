@@ -28,6 +28,8 @@ public class Member {
     @Column(name = "create_at")
     private LocalDateTime createAt;
 
+    private LocalDateTime updateAt;
+
     private String email;
     private String password;
     private String provider;
