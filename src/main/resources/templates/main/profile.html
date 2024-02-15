@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" th:href="@{/css/profileCSS.css}" href="../../static/css/profileCSS.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link href="../assets/dist/css/bootstrap.min.css/bootstrap.bundle.js" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="fade">
+  <div class="all">
+
+    <!--헤더-->
+    <header class="fixed-top p-3 mb-3 border-bottom">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap" />
+          </svg>
+        </a>
+
+        <ul class="nav col-7 col-md-6 col-lg-auto me-lg-auto mb-2 mb-md-0">
+          <div id="logo">
+            <a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+                                                                                                   fill="currentColor" class="bi bi-file-word-fill" viewBox="0 0 16 16">
+              <path
+                      d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
+            </svg></a>
+          </div>
+          <li><a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-body-emphasis">Overview</a></li>
+          <li><a th:onclick="|location.href='@{/main/inventory}'|" onclick="location.href='inventory.html'" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+          <li><a th:onclick="|location.href='@{/main/miniGame}'|" onclick="location.href='miniGame.html'" class="nav-link px-2 link-body-emphasis">Mini game</a></li>
+        </ul>
+
+        <form class="col-2 col-md-3 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            <img th:attr="src=@{/img/userProfile.jpeg}" src="../img/userProfile.jpeg" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" th:onclick="|location.href='@{/main/profile}'|" onclick="location.href='profile.html'">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+      <!--sidebar-->
+  <div class="sidebar">
+    <aside class="bd-aside" style="width: 180px; font-family: 'IBM Plex Sans KR', sans-serif;">
+      <span class="fs-5 fw-semibold">Profile</span>
+      <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+          <span id="side-my-info">
+            <button class="btn btn-toggle d-inline-flex align-items-left rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+            내 정보 관리
+          </button>
+          </span>
+          <div class="collapse show" id="home-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li id="side-info-edit"><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">내 정보 수정</a></li>
+              <li id="side-account-info"><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">계정 정보</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </aside>
+  </div>
+
+      <!--main(헤더 아래)-->
+        <div class="bd-cheatsheet container-fluid bg-body">
+          <section id="content">
+            <main class="main-body" style="font-family: 'IBM Plex Sans KR', sans-serif">
+              <h2 id="title">내 정보 관리</h2>
+              <p id="title2">내 정보 수정</p>
+              <div id="my-info">
+                <a href="#" aria-expanded="false">
+                  <img th:attr="src=@{/img/userProfile.jpeg}" src="../img/userProfile.jpeg" alt="mdo" width="200" height="200" class="rounded-circle">
+                </a>
+                <div class="my-info-detail">
+                  <p style="font-weight: 300; color: rgba(31,34,38,0.6)">아래는 다른 유저들에게 보이는 정보입니다.</p>
+                  <div class="row">
+                    <div class="col">
+                      <p>이름</p>
+                    </div>
+                    <div class="col">
+                      <textarea>홍길동</textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <p>소개글</p>
+                    </div>
+                    <div class="col">
+                      <textarea>안녕하세요 홍길동입니다!</textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <p>링크</p>
+                    </div>
+                    <div class="col">
+                      <textarea>github.com/gildong</textarea>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수정</button>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body" style="font-weight: 300; height: 80px">
+                        내 정보를 수정하시겠습니까?
+                        <button class="btn-no" data-bs-dismiss="modal">아니오</button>
+                        <button class="btn-yes" data-bs-dismiss="modal">예</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <p>계정 정보</p>
+
+              <div id="account-info">
+                <div class="account-info-detail">
+                  <p id="title3">계정 연동</p>
+                  <div class="row">
+                    <div class="col">
+                      <img th:attr="src=@{/img/googleLogo.png}" src="../img/googleLogo.png" alt="mdo" width="60" height="60">
+                      <span style="color: black; font-weight: 300">Google</span>
+                    </div>
+                    <div class="col" style="text-align: right">
+                      <button class="btn-account">연동하기</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col">
+                      <p>이메일</p>
+                    </div>
+                    <div class="col" style="text-align: right">
+                      <p style="font-weight: 300">gildong@gmail.com</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <p>비밀번호</p>
+                  <div class="row">
+                    <div class="col">
+                      <p style="font-weight: 300">최근 업데이트: 2024-02-01</p>
+                    </div>
+                    <div class="col" style="text-align: right">
+                      <button id="btn-change-password">비밀번호 변경하기</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <p style="text-align: right; color: #0d6efd">로그아웃</p>
+                  <p style="text-align: right; color: red">계정 탈퇴</p>
+                </div>
+              </div>
+            </main>
+          </section>
+        </div>
+
+  </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(function () {
+      document.body.className = '';
+    });
+  });
+
+  $(document).ready(function() {
+    $('#side-info-edit').click(function () {
+      var offset = $('#title2').offset();
+      $('html').animate({scrollTop: offset.top}, 50);
+    });
+  });
+
+  $(document).ready(function() {
+    $('#side-account-info').click(function () {
+      var offset = $('#title3').offset();
+      $('html').animate({scrollTop: offset.top}, 50);
+    });
+  });
+
+  var i = 0;
+  var newHeight;
+
+  $('#side-my-info button').on('click',function() {
+    if(i==0) {
+      newHeight = '100px';
+      i++;
+    }
+    else{
+      newHeight = '140px';
+      i--;
+    }
+
+    $('.sidebar').animate({
+      height: newHeight
+    }, 300);
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
