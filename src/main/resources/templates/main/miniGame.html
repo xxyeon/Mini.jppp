@@ -29,13 +29,13 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <div id="logo">
-                            <a th:onclick="|location.href='@{/main}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+                            <a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
                                                                                                   fill="currentColor" class="bi bi-file-word-fill" viewBox="0 0 16 16">
                                 <path
                                         d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
                             </svg></a>
                         </div>
-                        <li><a th:onclick="|location.href='@{/main}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-body-emphasis">Overview</a></li>
+                        <li><a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-body-emphasis">Overview</a></li>
                         <li><a th:onclick="|location.href='@{/main/inventory}'|" onclick="location.href='inventory.html'" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
                         <li><a th:onclick="|location.href='@{/main/miniGame}'|" onclick="location.href='miniGame.html'" class="nav-link px-2 link-secondary">Mini game</a></li>
                     </ul>
@@ -52,7 +52,7 @@
                         <ul class="dropdown-menu text-small">
                             <li><a class="dropdown-item" href="#">New project...</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" th:onclick="|location.href='@{/main/profile}'|" onclick="location.href='profile.html'">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -95,17 +95,17 @@
                                     <div class="accordion-item" th:each="chapter:${chapters}">
                                         <h2 class="accordion-header" >
                                             <button style="font-weight: 500" th:text="${chapter.number}" class="accordion-button"
-                                                    th:classappend="${chapter.chapter_id == 1} ? '' : collapsed" type="button" data-bs-toggle="collapse"
-                                                    th:data-bs-target="'#'+ ${chapter.chapter_id}"
+                                                    th:classappend="${chapter.id == 1} ? '' : collapsed" type="button" data-bs-toggle="collapse"
+                                                    th:data-bs-target="'#'+ ${chapter.id}"
                                                     data-bs-target="#collapseOne"
-                                                    th:aria-expanded="${chapter.chapter_id == 1} ? true : false" aria-expanded="false"
-                                                    th:aria-controls="${chapter.chapter_id}" aria-controls="collapseOne">
+                                                    th:aria-expanded="${chapter.id == 1} ? true : false" aria-expanded="false"
+                                                    th:aria-controls="${chapter.id}" aria-controls="collapseOne">
                                                 Chapter 1
                                             </button>
                                         </h2>
-                                        <div th:id="${chapter.chapter_id}" id="collapseOne" class="accordion-collapse collapse"
-                                             th:classappend="${chapter.chapter_id == 1} ? show : ''" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body" style="cursor: pointer; font-weight: 300" th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|">
+                                        <div th:id="${chapter.id}" id="collapseOne" class="accordion-collapse collapse"
+                                             th:classappend="${chapter.id == 1} ? show : ''" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body" style="cursor: pointer; font-weight: 300" th:onclick="|location.href ='/main/learn/${chapter.id}'|">
                                                 <p id="chapter"
                                                    th:text="${chapter.title}" >
                                                     수식과 연산자
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">친구와 함께 틱택토 게임을 플레이해보세요.</p>
-                                            <small class="text-body-secondary">난이도 하</small>
+                                        <small class="text-body-secondary">난이도 하</small>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">행맨 게임으로 랜덤 영어 단어를 맞혀보세요.</p>
-                                            <small class="text-body-secondary">난이도 하</small>
+                                        <small class="text-body-secondary">난이도 하</small>
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">입력하는 숫자에 따라 스트라이크, 볼 혹은 아웃! 어떤 숫자가 답일지 유추해보세요.</p>
-                                            <small class="text-body-secondary">난이도 중</small>
+                                        <small class="text-body-secondary">난이도 중</small>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">최고 레벨이 되어 최강 용사로 등극! 힘을 입력하여 상대방을 쓰러뜨려보세요.</p>
-                                            <small class="text-body-secondary">난이도 중</small>
+                                        <small class="text-body-secondary">난이도 중</small>
                                     </div>
                                 </div>
                             </div>

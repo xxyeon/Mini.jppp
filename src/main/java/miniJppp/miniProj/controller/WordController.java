@@ -4,23 +4,19 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import miniJppp.miniProj.DTO.MemberDto;
-import miniJppp.miniProj.entity.Chapter;
-import miniJppp.miniProj.entity.Inventory;
-import miniJppp.miniProj.entity.Member;
-import miniJppp.miniProj.entity.Word;
-import miniJppp.miniProj.repository.ChapterRespository;
-import miniJppp.miniProj.repository.InventoryRepository;
-import miniJppp.miniProj.repository.MemberRepository;
-import miniJppp.miniProj.repository.WordRepository;
+import miniJppp.miniProj.config.auth.PrincipalDetails;
+import miniJppp.miniProj.entity.*;
+import miniJppp.miniProj.repository.*;
 import miniJppp.miniProj.service.InventoryService;
 import miniJppp.miniProj.service.MemberService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -34,75 +30,78 @@ public class WordController {
     private final MemberService memberService;
     private final ChapterRespository chapterRespository;
     private final InventoryService inventoryService;
-
-    @GetMapping("/{name}")
-    public String memberMainPage(@PathVariable String name, Model model) {
-
-        MemberDto memberDto = memberService.saveMember(new Member(name, "", LocalDateTime.now()));
-
-        List<Chapter> chapters = chapterRespository.findAll();
-        System.out.println("chapters: " + chapters.get(1).getNumber());
-        model.addAttribute("chapters", chapters);
-        model.addAttribute("member", memberDto);
-        return "main/ww_main";
-    }
+    private final LearnRepository learnRepository;
 
     @GetMapping("/learn/{chapterId}")
-    public String learn(@PathVariable("chapterId") Long chapter_id, Model model) throws SQLException {
+    public String learn(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable("chapterId") Long chapter_id, Model model) throws SQLException {
+        System.out.println(principalDetails.getUser().getEmail());
         List<Word> words = wordRepository.findAllByChapter_Id(chapter_id);
         model.addAttribute("words", words);
         int wordCount = words.size();
         model.addAttribute("wordTotal", wordCount);
-        return"main/ww_learn";
+        return"/main/ww_learn";
     }
 
     //인벤토리 api
 
-    @GetMapping("/{name}/inventory") //인벤토리 조회
-    public String inventory(@PathVariable("name") String name, Model model) {
-        MemberDto memberDto = memberService.findMember(name);
-        Long member_id = memberDto.getId();
-
-        Inventory memberInventory= inventoryRepository.findByMember_id(member_id);
+    @GetMapping("/inventory") //인벤토리 조회
+    public ModelAndView inventory(@AuthenticationPrincipal PrincipalDetails principalDetails, ModelAndView modelAndView) {
+        Member member = principalDetails.getUser();
+        MemberDto memberDto = MemberDto.builder()
+                .nickname(member.getName())
+                .email(member.getEmail())
+                .profileImgUrl(member.getProfileImgUrl()).build();
+        System.out.println(member);
+        Inventory memberInventory= inventoryService.getInventoryByName(memberDto.getNickname());
         List<Word> words = inventoryService.getInventoryWordList(memberInventory);
+        List<Learn> learns = learnRepository.findAllByInventory(memberInventory);
 
         List<Chapter> chapters = chapterRespository.findAll();
-        model.addAttribute("chapters", chapters);
-        model.addAttribute("words", words);
-        model.addAttribute("member", memberDto);
 
-        return "main/inventory";
+        modelAndView.addObject("chapters", chapters);
+        modelAndView.addObject("words", words);
+        modelAndView.addObject("learns", learns);
+        modelAndView.addObject("member",memberDto);
+
+        modelAndView.setViewName("/main/inventory");
+
+        return modelAndView;
     }
 
     @GetMapping("/miniGame")
     public String miniGame(Model model) {
         List<Chapter> chapters = chapterRespository.findAll();
         model.addAttribute("chapters", chapters);
-        return"main/miniGame";
+        return"/main/miniGame";
     }
 
     @GetMapping("/tictactoe")
     public String tictactoe() {
-        return"main/tictactoe";
+        return"/main/tictactoe";
     }
 
     @GetMapping("/hangman")
     public String hangman() {
-        return"main/hangman";
+        return"/main/hangman";
     }
 
     @GetMapping("/baseball")
     public String baseball() {
-        return"main/baseball";
+        return"/main/baseball";
     }
 
     @GetMapping("/levelUp")
     public String levelUp() {
-        return"main/levelUp";
+        return"/main/levelUp";
     }
 
     @GetMapping("/snake")
     public String snake() {
-        return"main/snake";
+        return"/main/snake";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return"/main/profile";
     }
 }
