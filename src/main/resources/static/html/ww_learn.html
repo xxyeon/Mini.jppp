@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta set="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>C++ learn</title>
+        <link rel="stylesheet" href="../css/learnCSS.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="all">
+            <div class="container-md">
+                <header>
+                    <nav>
+                        <div id="close_btn">
+                            <a href="ww_main.html" role="button"><button type="button" class="btn-close" aria-label="Close"></button></a>
+                        </div>
+                        <div id="title"><h3>학습하기</h3></div>
+                        <div id="bookmark">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bookmark-plus"
+                                viewBox="0 0 20 20">
+                                <path
+                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z" />
+                            </svg>
+                        </div>
+                        <div id="inventory">
+                            <a href="inventory.html"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-seam"
+                                                                      viewBox="0 0 20 20">
+                                <path
+                                    d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
+                            </svg></a>
+                        </div>
+                    </nav>
+                </header>
+            </div>
+
+            <main>
+                <div class="contents">
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a>
+                                    <figure>
+                                        <img src="../img/term1.jpeg" class="d-block w-100" alt="term 1">
+                                        <figcaption>term 1</figcaption>
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a>
+                                    <figure>
+                                        <img src="../img/term2.jpeg" class="d-block w-100" alt="term 2">
+                                        <figcaption>term 2</figcaption>
+                                    </figure>
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a>
+                                    <figure>
+                                        <img src="../img/term3.jpeg" class="d-block w-100" alt="term 3">
+                                        <figcaption>term 3</figcaption>
+                                    </figure>
+                                </a>
+                            </div>
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>            
+                    </div>
+                    
+                    <div class="choose_btn">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" type="button" data-bs-target="#carouselExample" data-bs-slide="next">알아요</button>
+                                <button class="btn btn-secondary" type="button" data-bs-target="#carouselExample" data-bs-slide="next">몰라요</button>
+                            </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+        <script scr="../js/learnJS.js"></script>
+    </body>
+</html>

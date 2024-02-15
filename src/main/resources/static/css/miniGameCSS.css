@@ -1,0 +1,85 @@
+body{
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+body.fade{
+    opacity: 0;
+}
+
+#under-header {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 300;
+}
+
+#bg-image{
+    background-image: url("../img/miniGameBG.png");
+    background-size: cover;
+}
+
+.bg-script{
+    color: white;
+}
+
+.btn-play{
+    border-radius: 20px;
+    border: none;
+    width: 180px;
+    height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+#modal-btn{
+    border-radius: 20px;
+    border: none;
+    width: 180px;
+    height: 40px;
+    background-color: rgba(183,183,183,0.74);
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+.accordion-body{
+    text-align: center;
+}
+
+.accordion-body :hover{
+    font-weight: 500;
+}
+
+/* 게임 선택 창*/
+.thumbnail{
+    position: relative;
+}
+
+.card-img-top:not(.game-name) {
+    object-fit: cover;
+    height: 225px;
+    filter: brightness(80%);
+    transition: all 0.2s linear;
+}
+
+.game-name{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate( -50%, -50%);
+    color: white;
+    font-weight: 500;
+}
+
+.thumb-img :hover {
+    filter: brightness(40%);
+    transition: all 0.2s linear;
+}
+
+.text-body-secondary{
+    position: absolute;
+    right: 7%;
+}

@@ -1,0 +1,134 @@
+body{
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+    margin: 20px;
+    padding: 0;
+    background-color: rgb(134, 165, 194);
+    width: 800px;
+}
+
+body.fade{
+    opacity: 0;
+}
+
+#all{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    position: fixed;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+    border-radius: 50px;
+    width: 868px;
+    height: 600px;
+    margin-left: 0;
+    border: 2px solid rgb(166, 166, 166);
+    background-color: white;
+    transform: translate(-50%, -50%);
+}
+
+#close_btn{
+    position: absolute;
+    top: 5%;
+    left: 3%;
+}
+
+#title{
+    position: absolute;
+    width: 100px;
+    top: 5%;
+    left: 50%;
+    margin-left: -50px;
+}
+
+#bookmark{
+    position: absolute;
+    top: 5%;
+    right: 12%
+}
+
+#inventory{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+#inventory > a{
+    color: black;
+}
+
+.contents{
+    position:absolute;
+    width: 600px;
+    top: 15%;
+    left: 50%;
+    margin-left: -300px;
+}
+
+.carousel-inner figure{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.word-preview{
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 20pt;
+    font-weight: 400;
+    color: darkblue;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space:pre-line;
+    text-align: center;
+}
+
+.carousel-inner #answer {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    /* 이미지와 겹치게 처리 */
+    top: 0;
+    left: 0;
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    /* 처음엔 안보이고 */
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-inner #answer:hover,
+.carousel-inner #answer p:hover,
+.carousel-inner #answer:focus,
+.carousel-inner #answer p:focus {
+    /* 마우스를 올리면 보이게 처리 */
+    opacity: 1;
+}
+
+.choose_btn{
+     position: absolute;
+     width: 300px;
+     bottom: -30%;
+     left: 50%;
+     margin-left: -150px;
+}
+
+#answer p{
+    word-break: keep-all;
+    /*white-space:pre-line;*/
+    /*opacity: 0;*/
+    position: absolute;
+    /*top: 40%;*/
+    left: 50%;
+    width: 60%;
+    transform: translateX(-50%);
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}

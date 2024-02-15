@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Game</title>
+    <link rel="stylesheet" th:href="@{/css/miniGameCSS.css}" href="../../static/css/miniGameCSS.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../assets/dist/css/bootstrap.min.css/bootstrap.bundle.js" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="fade">
+    <div class="all">
+        <div class="container-md">
+            <!--헤더-->
+            <header class="p-3 mb-3 border-bottom">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                            <use xlink:href="#bootstrap" />
+                        </svg>
+                    </a>
+
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <div id="logo">
+                            <a th:onclick="|location.href='@{/main}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+                                                                                                  fill="currentColor" class="bi bi-file-word-fill" viewBox="0 0 16 16">
+                                <path
+                                        d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
+                            </svg></a>
+                        </div>
+                        <li><a th:onclick="|location.href='@{/main}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-body-emphasis">Overview</a></li>
+                        <li><a th:onclick="|location.href='@{/main/inventory}'|" onclick="location.href='inventory.html'" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+                        <li><a th:onclick="|location.href='@{/main/miniGame}'|" onclick="location.href='miniGame.html'" class="nav-link px-2 link-secondary">Mini game</a></li>
+                    </ul>
+
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <img th:attr="src=@{/img/userProfile.jpeg}" src="../img/userProfile.jpeg" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!--main(헤더 아래)-->
+            <main id="under-header">
+                <div id="bg-image">
+                    <section class="py-5 text-center container">
+                        <label class="bg-script">
+                            <h1>C++로 만든 Mini game</h1>
+                            <p>틱택토 게임, 행맨 게임 등 다양한 미니 게임을 커맨드 창에서 즐겨보세요!
+                                <br>게임 플레이 이후 코드에 쓰인 C++ 개념도 학습해보세요.</p>
+                        </label>
+                        <div class="row py-lg-4">
+                            <div class="col-lg-7 col-md-auto mx-auto">
+                                <button class="btn-play">게임 플레이하기</button>
+                                <label></label>
+                                <button id="modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">플레이 전 개념 복습하기</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!--챕터 선택 창(모달)-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: rgba(235,235,235,100)">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>C++ chapter</strong></h1>
+                                <button type="button" style="cursor: pointer;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="font-weight: 300;">학습하실 챕터를 선택해주세요.<br></p>
+                                <div class="accordion" id="accordionExample">
+                                    <!---->
+                                    <div class="accordion-item" th:each="chapter:${chapters}">
+                                        <h2 class="accordion-header" >
+                                            <button style="font-weight: 500" th:text="${chapter.number}" class="accordion-button"
+                                                    th:classappend="${chapter.chapter_id == 1} ? '' : collapsed" type="button" data-bs-toggle="collapse"
+                                                    th:data-bs-target="'#'+ ${chapter.chapter_id}"
+                                                    data-bs-target="#collapseOne"
+                                                    th:aria-expanded="${chapter.chapter_id == 1} ? true : false" aria-expanded="false"
+                                                    th:aria-controls="${chapter.chapter_id}" aria-controls="collapseOne">
+                                                Chapter 1
+                                            </button>
+                                        </h2>
+                                        <div th:id="${chapter.chapter_id}" id="collapseOne" class="accordion-collapse collapse"
+                                             th:classappend="${chapter.chapter_id == 1} ? show : ''" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body" style="cursor: pointer; font-weight: 300" th:onclick="|location.href ='/main/learn/${chapter.chapter_id}'|">
+                                                <p id="chapter"
+                                                   th:text="${chapter.title}" >
+                                                    수식과 연산자
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-bg"></div>
+                    </div>
+                </div>
+
+                <!--게임 선택-->
+                <div class="album py-5 bg-body-tertiary">
+                    <div class="container">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            <div class="col">
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/tictacImg.png}" src="../img/tictacImg.png"></div>
+                                        <label class="game-name">틱택토 게임</label>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">친구와 함께 틱택토 게임을 플레이해보세요.</p>
+                                            <small class="text-body-secondary">난이도 하</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/hangman.jpeg}" src="../img/hangman.jpeg"></div>
+                                        <label class="game-name">행맨 게임</label>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">행맨 게임으로 랜덤 영어 단어를 맞혀보세요.</p>
+                                            <small class="text-body-secondary">난이도 하</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/baseball.jpeg}" src="../img/baseball.jpeg"></div>
+                                        <label class="game-name">숫자 야구 게임</label>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">입력하는 숫자에 따라 스트라이크, 볼 혹은 아웃! 어떤 숫자가 답일지 유추해보세요.</p>
+                                            <small class="text-body-secondary">난이도 중</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">레벨 업 게임</text></svg>
+                                    <div class="card-body">
+                                        <p class="card-text">최고 레벨이 되어 최강 용사로 등극! 힘을 입력하여 상대방을 쓰러뜨려봅시다.</p>
+                                            <small class="text-body-secondary">난이도 중</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">게임 5</text></svg>
+                                    <div class="card-body">
+                                        <p class="card-text">게임 설명</p>
+                                            <small class="text-body-secondary">난이도 중</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card shadow-sm" style="height: 350px">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">게임 6</text></svg>
+                                    <div class="card-body">
+                                        <p class="card-text">게임 설명</p>
+                                            <small class="text-body-secondary">난이도 중</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(function () {
+                document.body.className = '';
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-play').click(function () {
+                var offset = $('.album').offset();
+                $('html').animate({scrollTop: offset.top}, 50);
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

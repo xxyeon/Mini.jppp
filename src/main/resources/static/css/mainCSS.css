@@ -1,0 +1,108 @@
+body{
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+body.fade{
+    opacity: 0;
+}
+
+logo > a{
+    color: black;
+}
+
+.all{
+    display: flex;
+    align-items: center;
+}
+
+.cover-container {
+    max-width: 42em;
+}
+
+#under-header{
+    position: absolute;
+    top: 50%;
+    height: 500px;
+    margin-top: -250px;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+}
+
+.ex-pic{
+    position: relative;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+    object-fit: cover;
+    border-radius: 55px;
+    filter: brightness(80%);
+}
+
+.under-pic{
+    position: absolute;
+    left: 50%;
+    margin-left: -400px;
+    width: 800px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.px-3{
+    position: relative;
+    text-align: center;
+    top: 70%;
+    left: 50%;
+    margin-left: -500px;
+    width: 1000px;
+}
+
+
+#go-to-learn{
+    position: absolute;
+    width: 100px;
+    left: 45%;
+    margin-left: -50px;
+    font-size: 15pt;
+    margin-bottom: 20%;
+}
+
+#modal-btn{
+    border-radius: 20px;
+    border: none;
+    width: 180px;
+    height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 300;
+}
+
+.modal {
+    position: fixed;
+    pointer-events: none;
+}
+
+.modal-content{
+    position: fixed;
+    top: 10%;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.modal-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index : -1;
+}
+
+.accordion-body :hover{
+    font-weight: 500;
+}
+
+
