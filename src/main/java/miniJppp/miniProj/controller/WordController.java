@@ -79,4 +79,29 @@ public class WordController {
     public String tictactoe() {
         return"/main/tictactoe";
     }
+
+    @GetMapping("/hangman")
+    public String hangman() {
+        return"/main/hangman";
+    }
+
+    @GetMapping("/baseball")
+    public String baseball() {
+        return"/main/baseball";
+    }
+
+    @GetMapping("/levelUp")
+    public String levelUp() {
+        return"/main/levelUp";
+    }
+
+    @GetMapping("/snake")
+    public String snake() {
+        return"/main/snake";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return"/main/profile";
+    }
 }
