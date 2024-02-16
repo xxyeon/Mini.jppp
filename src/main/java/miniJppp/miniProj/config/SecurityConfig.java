@@ -79,6 +79,11 @@ public class SecurityConfig {
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
 
+        http
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/main-page");
+
 
         return http.build();
     }
