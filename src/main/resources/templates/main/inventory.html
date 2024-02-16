@@ -29,14 +29,14 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <div id="logo">
-                        <a th:onclick="|location.href='@{/main/${member.name}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+                        <a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
                                                                                                                fill="currentColor" class="bi bi-file-word-fill" viewBox="0 0 16 16">
                             <path
                                     d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
                         </svg></a>
                     </div>
-                    <li id="overviewButton"><a th:onclick="|location.href='@{/main/${member.name}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-body-emphasis">Overview</a></li>
-                    <li id="inventoryButton"><a th:onclick="|location.href='@{/main/${member.name}/inventory}'|" onclick="location.href='inventory.html'" class="nav-link px-2 link-secondary">Inventory</a></li>
+                    <li id="overviewButton"><a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-body-emphasis">Overview</a></li>
+                    <li id="inventoryButton"><a th:onclick="|location.href='@{/main/inventory}'|" onclick="location.href='inventory.html'" class="nav-link px-2 link-secondary">Inventory</a></li>
                     <li><a th:onclick="|location.href='@{/main/miniGame}'|" onclick="location.href='miniGame.html'" class="nav-link px-2 link-body-emphasis">Mini game</a></li>
                 </ul>
 
@@ -65,8 +65,8 @@
             <div class="upper">
                 <div class="description">
                     <br><br>
-                    <div id="p-title"><p>홍길동님의 인벤토리입니다.</p></div>
-                    <div id="p"><p>단어 학습 내용이 홍길동님의 인벤토리에 저장되었어요.<br> 언제든 다시 확인하며 C++ 개념을 공부해보세요.</p></div>
+                    <div id="p-title"><p>[[${member.nickname}]]의 인벤토리입니다.</p></div>
+                    <div id="p"><p>단어 학습 내용이 [[${member.nickname}]]의 인벤토리에 저장되었어요.<br> 언제든 다시 확인하며 C++ 개념을 공부해보세요.</p></div>
                 </div>
                 <div class="reviewBtn">
                     <button id="modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -132,77 +132,12 @@
                         <!--몰라요-->
                         <div class="radio-contents">
                             <div class="row">
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${!learn.learn}">
                                     <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">알아요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem;"></i>
-                                            </div>
-                                            <button class="moveBtn">알아요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">알아요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">알아요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">알아요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
+                                            <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
+                                            <p class="card-text" th:text="${learn.word.answer}">단어 설명</p>
                                             <div class="bookmarkBtn">
                                                 <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
                                             </div>
@@ -216,62 +151,12 @@
                         <!--북마크-->
                         <div class="radio-contents">
                             <div class="row">
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${learn.learn}">
                                     <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <button class="moveBtn">북마크 해제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <button class="moveBtn">북마크 해제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <button class="moveBtn">북마크 해제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <button class="moveBtn">북마크 해제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <button class="moveBtn">북마크 해제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3">
-                                    <div class="card" style="width: 300px; height: 220px">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
+                                            <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
+                                            <p class="card-text" th:text="${learn.word.answer}">단어 설명</p>
                                             <button class="moveBtn">북마크 해제</button>
                                         </div>
                                     </div>
@@ -282,12 +167,12 @@
                         <!--알아요-->
                         <div class="radio-contents">
                             <div class="row">
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px;">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${learn.learn}">
+                                    <div th:if="${learn.learn}" class="card" style="width: 300px; height: 220px;">
                                         <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
+                                            <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
+                                            <p class="card-text" th:text="${learn.word.answer}">단어 설명</p>
                                             <div class="bookmarkBtn">
                                                 <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
                                             </div>
@@ -295,70 +180,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">몰라요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">몰라요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">몰라요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">몰라요로 옮기기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3">
-                                    <div class="card" style="width: 300px; height: 220px;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <h6 class="card-subtitle mb-2 text-body-secondary">Chapter 1</h6>
-                                            <p class="card-text">단어 설명</p>
-                                            <div class="bookmarkBtn">
-                                                <i class="bi bi-bookmark-star" style="font-size: 2rem; cursor: pointer;"></i>
-                                            </div>
-                                            <button class="moveBtn">몰라요로 옮기기</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -405,10 +226,10 @@
         const logoBtn = document.querySelector("#logo a");
         const inventoryBtn = document.querySelector("#inventoryButton");
         const overviewBtn = document.querySelector("#overviewButton");
-        logoBtn.addEventListener("click", () => {location.href = "/main/" + localStorage.getItem("name")})
+        logoBtn.addEventListener("click", () => {location.href = "/"});
 
-        inventoryBtn.addEventListener("click", () => {location.href ="/main/" + localStorage.getItem("name") + "/inventory"});
-        overviewBtn.addEventListener("click", () => {location.href ="/main/" + localStorage.getItem("name")});
+        inventoryBtn.addEventListener("click", () => {location.href ="/main/inventory"});
+        overviewBtn.addEventListener("click", () => {location.href ="/"});
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

@@ -20,7 +20,7 @@
                     <nav>
                         <div id="close_btn">
 <!--                            <a href="ww_main.html" role="button"><button type="button" class="btn-close" aria-label="Close"></button></a>-->
-                            <a th:onclick="|location.href='@{/main}'|" onclick="location.href='ww_main.html'" role="button"><button type="button" class="btn-close" aria-label="Close"></button></a>
+                            <a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'" role="button"><button type="button" class="btn-close" aria-label="Close"></button></a>
                         </div>
                         <div id="title"><h3>학습하기</h3></div>
                         <div id="bookmark" style="cursor: pointer;">
@@ -84,21 +84,10 @@
                     document.body.className = '';
                 });
             });
-
-            const inventoryBtn = document.querySelector("#inventory a");
-            const closeBtn = document.querySelector("#close_btn a");
-
-            inventoryBtn.addEventListener("click", () => {location.href = "/main/" + localStorage.getItem("name") + "/inventory"});
-            closeBtn.addEventListener("click", () => {location.href = "/main/" + localStorage.getItem("name")});
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
-<!--        <script th:inline="javascript">-->
-<!--            function upProgress() {-->
-<!--                progWidth = document.getElementsByClassName( 'progress-bar').width;-->
-<!--                progWidth= 10;-->
-<!--            }-->
-<!--        </script>-->
+
     </body>
 </html>

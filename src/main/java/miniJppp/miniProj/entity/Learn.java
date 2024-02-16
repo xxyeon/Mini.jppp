@@ -20,4 +20,6 @@ public class Learn {
     @ManyToOne
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
+
+    private boolean learn;
 }
