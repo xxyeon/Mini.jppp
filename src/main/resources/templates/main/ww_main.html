@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head><script src="../assets/js/color-modes.js"></script>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,13 +29,13 @@
                         
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <div id="logo">
-                                <a th:onclick="|location.href='@{/main/${member.name}'|" onclick="location.href='ww_main.html'" ><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-word-fill"
+                                <a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'" ><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-word-fill"
                                                                                                                         viewBox="0 0 16 16">
                                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
                                 </svg></a>
                             </div>
-                            <li id="overviewButton"><a th:onclick="|location.href='@{/main/${member.name}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-secondary">Overview</a></li>
-                            <li id="inventoryButton"><a th:onclick="|location.href='@{/main/${member.name}/inventory'|" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+                            <li id="overviewButton"><a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-secondary">Overview</a></li>
+                            <li id="inventoryButton"><a th:onclick="|location.href='@{/main/inventory}'|" onclick="location.href='inventory.html'" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
                             <li><a th:onclick="|location.href='@{/main/miniGame}'|" onclick="location.href='miniGame.html'" class="nav-link px-2 link-body-emphasis">Mini game</a></li>
                         </ul>
                     
@@ -50,9 +51,9 @@
                             <ul class="dropdown-menu text-small">
                                 <li><a class="dropdown-item" href="#">New project...</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" th:onclick="|location.href='@{/main/profile}'|" onclick="location.href='profile.html'">Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                                <li><a class="dropdown-item" th:onclick="|location.href='@{/logout}'|" href="#">Sign out</a></li>
                             </ul>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                                             <p style="font-weight: 300;">학습하실 챕터를 선택해주세요.<br></p>
                                             <div class="accordion" id="accordionExample">
                                                 <!---->
-                                                <div class="accordion-item" th:each="chapter:${chapters}">
+                                                <div class="accordion-item" th:each="chapter : ${chapters}">
                                                     <h2 class="accordion-header" >
                                                         <button style="font-weight: 500" th:text="${chapter.number}" class="accordion-button"
                                                                 th:classappend="${chapter.id == 1} ? '' : collapsed" type="button" data-bs-toggle="collapse"
@@ -137,13 +138,6 @@
             console.log(dropdownElementList);
             //const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl))
         </script>
-    <script th:inline="javascript">
-        const inventoryBtn = document.querySelector("#inventoryButton");
-        const overviewBtn = document.querySelector("#overviewButton");
 
-        inventoryBtn.addEventListener("click", () => {location.href ="/main/" + [[${member.name}]] + "/inventory"});
-        overviewBtn.addEventListener("click", () => {location.href ="/main/" + [[${member.name}]]});
-        localStorage.setItem("name", [[${member.name}]])
-    </script>
     </body>
 </html>

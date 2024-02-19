@@ -1,0 +1,169 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><script src="../assets/js/color-modes.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web word</title>
+    <link rel="stylesheet" th:href="@{/css/mainCSS.css}" href="../../static/css/mainCSS.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../assets/dist/css/bootstrap.min.css/bootstrap.bundle.js" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
+    <meta name="google-signin-scope" content="profile email"/>
+    <meta name="google-signin-client_id" content="384880345973-8a6u338rf9sd9s3sccqms59ahm7c4365.apps.googleusercontent.com">
+    <style>
+        button {
+            margin-right: 5px;
+            border: none;
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="fade">
+<div class="all">
+    <div class="container-md">
+        <header class="p-3 mb-3 border-bottom">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <div id="logo">
+                        <a th:onclick="|location.href='@{/main/${member.name}'|" onclick="location.href='ww_main.html'" ><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-file-word-fill"
+                                                                                                                              viewBox="0 0 16 16">
+                            <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
+                        </svg></a>
+                    </div>
+                    <li id="overviewButton"><a th:onclick="|location.href='@{/main/${member.name}'|" onclick="location.href='ww_main.html'" class="nav-link px-2 link-secondary">Overview</a></li>
+                    <li id="inventoryButton"><a th:onclick="|location.href='@{/main/${member.name}/inventory'|" class="nav-link px-2 link-body-emphasis">Inventory</a></li>
+                    <li><a th:onclick="|location.href='@{/main/miniGame}'|" onclick="location.href='miniGame.html'" class="nav-link px-2 link-body-emphasis">Mini game</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                    <div class="modal fade" id="signUpModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Sign up Form</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form name="signUpForm" action="/join" method="post">
+                                <div class="modal-body">
+
+                                        <div class="mb-3">
+                                            <label for="signUpGroupExampleInput" class="form-label">Email Address</label>
+                                            <input name="email" type="email" class="form-control" id="signUpGroupExampleInput" placeholder="enter your email">
+                                        </div>
+                                        <div class="mb-3">
+                                           <label for="signUpGroupExampleInput2" class="form-label">Nickname</label>
+                                            <input name="name" type="text" class="form-control" id="signUpGroupExampleInput2" placeholder="enter your nickname">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="signUpGroupExampleInput2" class="form-label">Password</label>
+                                            <input name="password" type="password" class="form-control" id="signUpGroupExampleInput3" placeholder="enter your password">
+                                        </div>
+                                </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" value="Sign Up" class="btn btn-primary" data-bs-toggle="modal">
+                                        </div>
+                                    </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="signUpModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    회원가입 완료!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn btn-primary" data-bs-target="#signUpModalToggle" data-bs-toggle="modal">Sign up</button>
+
+                <div class="modal fade" id="signInModalToggle" aria-hidden="true" aria-labelledby="signInModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="signInModalToggleLabel">Sign In Form</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="signInForm" action="/login" method="post">
+                                    <div class="mb-3">
+                                        <label for="signInGroupExampleInput" class="form-label">Nickname</label>
+                                        <input name="name" type="text" class="form-control" id="signInGroupExampleInput" placeholder="enter your nickname">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signInGroupExampleInput2" class="form-label">Password</label>
+                                        <input name="password" type="password" class="form-control" id="signInGroupExampleInput2" placeholder="enter your password">
+                                    </div>
+                                    <button type="button" id="googleBtn" onclick=location.href='/oauth2/authorization/google'><img th:attr="src=@{img/google.png}" src="../img/google.png"></button>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Sign In" class="btn btn-primary" data-bs-toggle="modal">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <button type="button" class="btn btn-primary btn btn-primary" data-bs-target="#signInModalToggle" data-bs-toggle="modal">Sign in</button>
+
+
+
+            </div>
+
+        </header>
+
+        <main>
+
+            <img class="ex-pic" th:attr="src=@{/img/computer_man.png}" src= "../img/computer_man.png">
+
+            <div class="under-pic">
+                <main class="px-3">
+                    <br>
+                    <div>
+                        <h2 style="font-weight: 300">Word Web에서 C++ 개념 공부와 미니 게임 플레이를 즐겨보세요.</h2>
+                        <p class="lead">Word Web은 C++ 공부에 어려움을 겪는 사람들을 위해 다양한 용어를 설명해드려요!
+                            <br>또한 이를 활용한 미니 게임까지 플레이할 수 있어요.
+                            <br>언제 어디서든 단어장처럼 열어 확인하며 지식을 쌓아보세요.
+                        </p>
+                    </div>
+
+                </main>
+            </div>
+        </main>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(function () {
+            document.body.className = '';
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous">
+    const dropdownElementList = document.querySelectorAll('.dropdown-toggle')
+    console.log(dropdownElementList);
+    //const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl))
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package miniJppp.miniProj.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.extern.apachecommons.CommonsLog;
 
@@ -22,6 +23,7 @@ public class Word {
     private String answer;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "chapter_id")
     private Chapter chapter;
 }
