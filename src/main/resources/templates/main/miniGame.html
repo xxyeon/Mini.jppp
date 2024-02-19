@@ -29,7 +29,7 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <div id="logo">
-                            <a th:onclick="|location.href='@{/main}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+                            <a th:onclick="|location.href='@{/}'|" onclick="location.href='ww_main.html'"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
                                                                                                   fill="currentColor" class="bi bi-file-word-fill" viewBox="0 0 16 16">
                                 <path
                                         d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5.485 4.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 7.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z" />
@@ -52,11 +52,11 @@
                         <ul class="dropdown-menu text-small">
                             <li><a class="dropdown-item" href="#">New project...</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" th:onclick="|location.href='@{/main/profile}'|" onclick="location.href='profile.html'">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li><a class="dropdown-item" th:onclick="|location.href='@{/logout}'|" href="#">Sign out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -132,62 +132,68 @@
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">친구와 함께 틱택토 게임을 플레이해보세요.</p>
-                                            <small class="text-body-secondary">난이도 하</small>
+                                        <small class="text-body-secondary">난이도 하</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card shadow-sm" style="height: 350px">
-                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/hangman}'|" onclick="location.href='hangman.html'" style="cursor: pointer">
                                         <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/hangman.jpeg}" src="../img/hangman.jpeg"></div>
                                         <label class="game-name">행맨 게임</label>
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">행맨 게임으로 랜덤 영어 단어를 맞혀보세요.</p>
-                                            <small class="text-body-secondary">난이도 하</small>
+                                        <small class="text-body-secondary">난이도 하</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card shadow-sm" style="height: 350px">
-                                    <div class="thumbnail" th:onclick="|location.href='@{/main/tictactoe}'|" onclick="location.href='tictactoe.html'" style="cursor: pointer">
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/baseball}'|" onclick="location.href='baseball.html'" style="cursor: pointer">
                                         <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/baseball.jpeg}" src="../img/baseball.jpeg"></div>
                                         <label class="game-name">숫자 야구 게임</label>
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">입력하는 숫자에 따라 스트라이크, 볼 혹은 아웃! 어떤 숫자가 답일지 유추해보세요.</p>
-                                            <small class="text-body-secondary">난이도 중</small>
+                                        <small class="text-body-secondary">난이도 중</small>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="card shadow-sm" style="height: 350px">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">레벨 업 게임</text></svg>
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/levelUp}'|" onclick="location.href='levelUp.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/levelUp.jpeg}" src="../img/levelUp.jpeg"></div>
+                                        <label class="game-name">레벨 업 게임</label>
+                                    </div>
                                     <div class="card-body">
-                                        <p class="card-text">최고 레벨이 되어 최강 용사로 등극! 힘을 입력하여 상대방을 쓰러뜨려봅시다.</p>
-                                            <small class="text-body-secondary">난이도 중</small>
+                                        <p class="card-text">최고 레벨이 되어 최강 용사로 등극! 힘을 입력하여 상대방을 쓰러뜨려보세요.</p>
+                                        <small class="text-body-secondary">난이도 중</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card shadow-sm" style="height: 350px">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">게임 5</text></svg>
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/snake}'|" onclick="location.href='snake.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/snake.jpeg}" src="../img/snake.jpeg"></div>
+                                        <label class="game-name">뱀 게임</label>
+                                    </div>
                                     <div class="card-body">
-                                        <p class="card-text">게임 설명</p>
-                                            <small class="text-body-secondary">난이도 중</small>
+                                        <p class="card-text">벽과 몸을 피해 뱀의 길이를 계속해서 늘려보세요.</p>
+                                        <small class="text-body-secondary">난이도 상</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card shadow-sm" style="height: 350px">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c"/><text x="40%" y="50%" fill="#eceeef" dy=".3em">게임 6</text></svg>
+                                    <div class="thumbnail" th:onclick="|location.href='@{/main/snake}'|" onclick="location.href='snake.html'" style="cursor: pointer">
+                                        <div class="thumb-img"><img class="card-img-top" role="img" th:attr="src=@{/img/tetris.jpeg}" src="../img/tetris.jpeg"></div>
+                                        <label class="game-name">테트리스 게임</label>
+                                    </div>
                                     <div class="card-body">
-                                        <p class="card-text">게임 설명</p>
-                                            <small class="text-body-secondary">난이도 중</small>
+                                        <p class="card-text">블럭을 차곡 차곡 쌓아 테트리스를 플레이해보세요.</p>
+                                        <small class="text-body-secondary">난이도 상</small>
                                     </div>
                                 </div>
                             </div>

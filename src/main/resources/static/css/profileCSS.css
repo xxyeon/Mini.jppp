@@ -1,0 +1,155 @@
+body {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+    background-color: rgba(183,183,183,0.08) !important;
+}
+
+body.fade {
+    opacity: 0;
+}
+
+.flex-shrink-0 {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+header {
+    position: relative;
+    background-color: white;
+}
+
+.sidebar {
+    position: fixed;
+    top: 100px;
+    margin-left: 100px;
+    height: 140px;
+    width: 180px;
+    border: 1.5px solid rgb(166, 166, 166);
+    border-radius: 30px;
+    background-color: white;
+}
+
+.sidebar li{
+    font-weight: 300;
+}
+
+aside {
+    position: fixed;
+    top: 115px;
+    left: 115px;
+}
+
+.main-body {
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 100px;
+}
+
+#my-info {
+    position: relative;
+    height: 300px;
+    width: 700px;
+    border: 1.5px solid rgb(166, 166, 166);
+    border-radius: 30px;
+    background-color: white;
+}
+
+#my-info img {
+    position: absolute;
+    top: 50px;
+    left: 75px;
+}
+
+.my-info-detail {
+    position: absolute;
+    top: 50px;
+    left: 325px;
+    width: 300px;
+}
+
+.my-info-detail textarea{
+    height: 27px;
+    border-radius: 20px;
+    background-color: rgba(184,238,255,0.27);
+    color: rgba(31,34,38,0.27);
+    padding-left: 10px;
+}
+
+.btn-edit {
+    position: absolute;
+    right: 75px;
+    bottom: 40px;
+    border-radius: 30px;
+    border: none;
+    width: 100px;
+    height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+.btn-yes {
+    position: absolute;
+    right: 40px;
+    border-radius: 30px;
+    border: none;
+    width: 100px;
+    height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+.btn-no {
+    position: absolute;
+    right: 150px;
+    border-radius: 30px;
+    border: none;
+    width: 100px;
+    height: 40px;
+    background-color: rgba(183,183,183,0.74);
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+#account-info {
+    position: relative;
+    height: 460px;
+    width: 700px;
+    border: 1.5px solid rgb(166, 166, 166);
+    border-radius: 30px;
+    background-color: white;
+}
+
+.account-info-detail {
+    position: absolute;
+    width: 550px;
+    top: 30px;
+    left: 75px;
+    bottom: 30px;
+}
+
+.btn-account {
+    border-radius: 30px;
+    border: none;
+    width: 120px;
+    height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+#btn-change-password {
+    border-radius: 30px;
+    border: none;
+    width: 200px;
+    height: 40px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 500;
+    font-size: 12pt;
+}

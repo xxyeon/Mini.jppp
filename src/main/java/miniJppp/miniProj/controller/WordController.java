@@ -45,7 +45,7 @@ public class WordController {
     //인벤토리 api
 
     @GetMapping("/inventory") //인벤토리 조회
-    public ModelAndView inventory(@AuthenticationPrincipal PrincipalDetails principalDetails, ModelAndView modelAndView) {
+    public String inventory(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Member member = principalDetails.getUser();
         MemberDto memberDto = MemberDto.builder()
                 .nickname(member.getName())
@@ -57,15 +57,14 @@ public class WordController {
         List<Learn> learns = learnRepository.findAllByInventory(memberInventory);
 
         List<Chapter> chapters = chapterRespository.findAll();
+        
+        model.addAttribute("chapters", chapters);
+        model.addAttribute("words", words);
+        model.addAttribute("learns", learns);
+        model.addAttribute("member", memberDto);
 
-        modelAndView.addObject("chapters", chapters);
-        modelAndView.addObject("words", words);
-        modelAndView.addObject("learns", learns);
-        modelAndView.addObject("member",memberDto);
 
-        modelAndView.setViewName("/main/inventory");
-
-        return modelAndView;
+        return "/main/inventory";
     }
 
     @GetMapping("/miniGame")
@@ -78,5 +77,30 @@ public class WordController {
     @GetMapping("/tictactoe")
     public String tictactoe() {
         return"/main/tictactoe";
+    }
+
+    @GetMapping("/hangman")
+    public String hangman() {
+        return"/main/hangman";
+    }
+
+    @GetMapping("/baseball")
+    public String baseball() {
+        return"/main/baseball";
+    }
+
+    @GetMapping("/levelUp")
+    public String levelUp() {
+        return"/main/levelUp";
+    }
+
+    @GetMapping("/snake")
+    public String snake() {
+        return"/main/snake";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return"/main/profile";
     }
 }
