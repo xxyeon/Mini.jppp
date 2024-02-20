@@ -117,12 +117,4 @@ public class WordController {
         model.addAttribute("member", memberDto);
         return"/main/profile";
     }
-
-    @ResponseBody
-    @PostMapping("/save-learn-data")
-    public String save_data(@RequestBody LearnDto learnDto) {
-
-        inventoryService.saveLearnData(learnDto);
-        return "success";
-    }
 }
