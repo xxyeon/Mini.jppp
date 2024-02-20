@@ -7,4 +7,6 @@ import java.util.List;
 public interface WordRepository extends JpaRepository<Word, Long> {
     public List<Word> findAllByChapter_Id(Long chapterId);
 
+    public Word findWordById(Long wordId);
+
 }

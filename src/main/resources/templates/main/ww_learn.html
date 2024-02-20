@@ -32,7 +32,7 @@
                                     d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z" />
                             </svg>
                         </div>
-                        <div id="inventory">
+                        <div id="inventory" th:onclick="|location.href='@{/main/inventory}'|">
                             <a style="cursor: pointer;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 20 20">
                                 <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
@@ -46,7 +46,7 @@
                 <div class="contents">
                     <div id="carouselExample" class="carousel slide">
                         <div class="carousel-inner">
-                            <div th:each="word : ${words}" class="carousel-item" th:classappend="${words.indexOf(word) == 0} ? active : ''" >
+                            <div th:each="word : ${words}" class="carousel-item" th:classappend="${words.indexOf(word) == 0} ? active : ''" th:id="${word.id}">
                                 <a>
                                     <figure>
                                         <img th:attr="src=@{/img/term1.jpeg}" src="../img/term1.jpeg" class="d-block w-100" alt="image 1">
@@ -70,8 +70,8 @@
                         </div>
                         <div class="choose_btn">
                                 <div class="d-grid gap-2">
-                                    <button class="btn btn-primary" type="button" onclick="upProgress" data-bs-target="#carouselExample" data-bs-slide="next">알아요</button>
-                                    <button class="btn btn-secondary" type="button" onclick="upProgress" data-bs-target="#carouselExample" data-bs-slide="next">몰라요</button>
+                                    <button id="true" class="btn btn-primary" type="button" onclick="upProgress" data-bs-target="#carouselExample" data-bs-slide="next">알아요</button>
+                                    <button id="false" class="btn btn-secondary" type="button" onclick="upProgress" data-bs-target="#carouselExample" data-bs-slide="next">몰라요</button>
                                 </div>
                         </div>
                     </div>
@@ -84,10 +84,74 @@
                     document.body.className = '';
                 });
             });
+
+
+
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script th:inline="javascript">
 
+            const true_btn = document.querySelector("#true");
+            const false_btn = document.querySelector("#false");
+
+            true_btn.addEventListener("click", init);
+            false_btn.addEventListener("click", init2)
+            function init() {
+                const shown_word = document.querySelector(".active");
+                console.log(shown_word.id);
+
+                var jsonData = JSON.stringify({
+                    wordId : shown_word.id,
+                    learn : true,
+                    nickname : [[${member.nickname}]]
+                })
+                $.ajax({
+                    type : "POST",
+                    url : "http://localhost:8080/main/save-learn-data",
+                    contentType: "application/json",
+                    dataType: "text",
+                    data: jsonData,
+                    success : (data) => {
+                        console.log(data);
+                    },
+                    error : (data, request, status, error) => {
+                        console.log("code: " + request.status);
+                        console.log("message: " + request.responseText);
+                        console.log("error: " + error);
+                        console.log("data: " + data);
+                    }
+                });
+            }
+
+            function init2() {
+                const shown_word = document.querySelector(".active");
+                console.log(shown_word.id);
+
+                var jsonData = JSON.stringify({
+                    wordId : shown_word.id,
+                    learn : false,
+                    nickname : [[${member.nickname}]]
+                })
+                $.ajax({
+                    type : "POST",
+                    url : "http://localhost:8080/main/save-learn-data",
+                    contentType: "application/json",
+                    dataType: "text",
+                    data: jsonData,
+                    success : (data) => {
+                        console.log(data);
+                    },
+                    error : (data, request, status, error) => {
+                        console.log("code: " + request.status);
+                        console.log("message: " + request.responseText);
+                        console.log("error: " + error);
+                        console.log("data: " + data);
+                    }
+                });
+            }
+        </script>
     </body>
 </html>

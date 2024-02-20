@@ -1,8 +1,8 @@
 package miniJppp.miniProj.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import miniJppp.miniProj.DTO.LearnDto;
 import miniJppp.miniProj.DTO.MemberDto;
 import miniJppp.miniProj.config.auth.PrincipalDetails;
 import miniJppp.miniProj.entity.*;
@@ -35,19 +35,27 @@ public class WordController {
     @GetMapping("/learn/{chapterId}")
     public String learn(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable("chapterId") Long chapter_id, Model model) throws SQLException {
         System.out.println(principalDetails.getUser().getEmail());
+        Member member = principalDetails.getUser();
+        MemberDto memberDto = MemberDto.builder()
+                .id(member.getId())
+                .nickname(member.getName())
+                .email(member.getEmail())
+                .profileImgUrl(member.getProfileImgUrl()).build();
         List<Word> words = wordRepository.findAllByChapter_Id(chapter_id);
         model.addAttribute("words", words);
         int wordCount = words.size();
         model.addAttribute("wordTotal", wordCount);
+        model.addAttribute("member",memberDto);
         return"/main/ww_learn";
     }
 
     //인벤토리 api
 
     @GetMapping("/inventory") //인벤토리 조회
-    public ModelAndView inventory(@AuthenticationPrincipal PrincipalDetails principalDetails, ModelAndView modelAndView) {
+    public String inventory(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Member member = principalDetails.getUser();
         MemberDto memberDto = MemberDto.builder()
+                .id(member.getId())
                 .nickname(member.getName())
                 .email(member.getEmail())
                 .profileImgUrl(member.getProfileImgUrl()).build();
@@ -58,14 +66,12 @@ public class WordController {
 
         List<Chapter> chapters = chapterRespository.findAll();
 
-        modelAndView.addObject("chapters", chapters);
-        modelAndView.addObject("words", words);
-        modelAndView.addObject("learns", learns);
-        modelAndView.addObject("member",memberDto);
+        model.addAttribute("chapters", chapters);
+        model.addAttribute("words", words);
+        model.addAttribute("learns", learns);
+        model.addAttribute("member",memberDto);
 
-        modelAndView.setViewName("/main/inventory");
-
-        return modelAndView;
+        return "/main/inventory";
     }
 
     @GetMapping("/miniGame")
@@ -110,5 +116,13 @@ public class WordController {
                 .build();
         model.addAttribute("member", memberDto);
         return"/main/profile";
+    }
+
+    @ResponseBody
+    @PostMapping("/save-learn-data")
+    public String save_data(@RequestBody LearnDto learnDto) {
+
+        inventoryService.saveLearnData(learnDto);
+        return "success";
     }
 }
