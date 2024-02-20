@@ -85,4 +85,14 @@ public class InventoryService {
         BookMark memberBookMark = bookMarkRepository.findBookMarkByMember(findMember);
         return reviewRepository.findAllByBookMark(memberBookMark);
     }
+
+    @Transactional
+    //learn 단어의 boolean값 수정
+    public void updateLearnData(LearnDto learnDto) {
+        Word word = wordRepository.findWordById(Long.valueOf(learnDto.getWordId()));
+        Inventory inventory = inventoryRepository.findByMember(memberRepository.findByName(learnDto.getNickname()));
+
+        Learn findlearn = learnRepository.findByWordAndInventory(word, inventory);
+        findlearn.updateLearn(learnDto.isLearn());
+    }
 }

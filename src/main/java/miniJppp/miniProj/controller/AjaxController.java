@@ -36,4 +36,11 @@ public class AjaxController {
         return "success";
     }
 
+    @PostMapping("/update-learn-data")
+    public String update_data(@RequestBody LearnDto learnDto) {
+        System.out.println(learnDto.getWordId());
+        inventoryService.updateLearnData(learnDto);
+        return "success";
+    }
+
 }

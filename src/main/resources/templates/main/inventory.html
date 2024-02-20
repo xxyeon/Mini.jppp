@@ -129,7 +129,7 @@
                         <div class="radio-contents"><!--무시--></div>
                         <!--몰라요-->
                         <div class="radio-contents">
-                            <div class="row">
+                            <div class="row dontKnowDiv">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${!learn.learn}">
                                     <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
@@ -139,7 +139,7 @@
                                             <div class="bookmarkBtn" th:id="${learn.word.id}">
                                                 <i th:id="${learn.word.id}" class="bi bi-bookmark-star toggle" style="font-size: 2rem; cursor: pointer;"></i>
                                             </div>
-                                            <button class="moveBtn">알아요로 옮기기</button>
+                                            <button th:id="${learn.word.id}" class="moveBtn move">알아요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
@@ -164,17 +164,17 @@
 
                         <!--알아요-->
                         <div class="radio-contents">
-                            <div class="row">
+                            <div class="row knowDiv">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${learn.learn}">
                                     <div th:if="${learn.learn}" class="card" style="width: 300px; height: 220px;">
-                                        <div class="card-body">
+                                        <div id="knowDiv" class="card-body">
                                             <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
                                             <p class="card-text" th:text="${learn.word.answer}">단어 설명</p>
                                             <div class="bookmarkBtn" >
                                                 <i th:id="${learn.word.id}" class="bi bi-bookmark-star toggle" style="font-size: 2rem; cursor: pointer;"></i>
                                             </div>
-                                            <button class="moveBtn">몰라요로 옮기기</button>
+                                            <button th:id="${learn.word.id}" class="moveBtn move">몰라요로 옮기기</button>
                                         </div>
                                     </div>
                                 </div>
@@ -315,6 +315,57 @@
                 }
             });
         });
+
+        $('.move').each(function(index, item) {
+            $(item).click(() => {
+                if ($(item).text() == "알아요로 옮기기") {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/update-learn-data",
+                        contentType: "application/json",
+                        dataType: "text",
+                        data: JSON.stringify({
+                            wordId: $(this).attr("id"),
+                            learn: true,
+                            nickname: [[${member.nickname}]]
+                        }),
+                        success: (data) => {
+                            console.log(data);
+                            window.location.replace("http://localhost:8080/main/inventory");
+                        },
+                        error: (data, request, status, error) => {
+                            console.log("code: " + request.status);
+                            console.log("message: " + request.responseText);
+                            console.log("error: " + error);
+                            console.log("data: " + data);
+                        }
+                    });
+                } else if ($(this).text() == "몰라요로 옮기기") {
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/update-learn-data",
+                        contentType: "application/json",
+                        dataType: "text",
+                        data: JSON.stringify({
+                            wordId: $(this).attr("id"),
+                            learn: false,
+                            nickname: [[${member.nickname}]]
+                        }),
+                        success: (data) => {
+                            console.log(data);
+                            window.location.replace("http://localhost:8080/main/inventory");
+                        },
+                        error: (data, request, status, error) => {
+                            console.log("code: " + request.status);
+                            console.log("message: " + request.responseText);
+                            console.log("error: " + error);
+                            console.log("data: " + data);
+                        }
+                    });
+                }
+            })
+        })
+
 
 
     </script>

@@ -31,4 +31,8 @@ public class Learn {
 
     private boolean learn;
 
+    public void updateLearn(Boolean bool) {
+        this.learn = bool;
+    }
+
 }
