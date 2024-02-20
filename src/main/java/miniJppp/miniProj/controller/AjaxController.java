@@ -3,11 +3,13 @@ package miniJppp.miniProj.controller;
 import lombok.RequiredArgsConstructor;
 import miniJppp.miniProj.DTO.LearnDto;
 import miniJppp.miniProj.DTO.ReviewDto;
+import miniJppp.miniProj.entity.BookMark;
+import miniJppp.miniProj.entity.Review;
 import miniJppp.miniProj.service.InventoryService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController

@@ -79,4 +79,10 @@ public class InventoryService {
         Review findReview = reviewRepository.findByBookMarkAndWord(findBookmark, findWord);
         reviewRepository.deleteById(findReview.getId());
     }
+
+    public List<Review> getReviewData(String nickname) {
+        Member findMember = memberRepository.findByName(nickname);
+        BookMark memberBookMark = bookMarkRepository.findBookMarkByMember(findMember);
+        return reviewRepository.findAllByBookMark(memberBookMark);
+    }
 }

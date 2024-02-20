@@ -301,6 +301,20 @@
                 }
             });
         });
+        $('#bookmarkBtn').click(() => {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/main/get-bookmark-data?nickname=" + [[${member.nickname}]],
+                success: (reviews) => {
+                    $('#bookmarkDiv').replaceWith(reviews)
+                }, error: (data, request, status, error) => {
+                    console.log("code: " + request.status);
+                    console.log("message: " + request.responseText);
+                    console.log("error: " + error);
+                    console.log("data: " + data);
+                }
+            });
+        });
 
 
     </script>

@@ -122,4 +122,12 @@ public class WordController {
         model.addAttribute("member", memberDto);
         return"/main/profile";
     }
+
+    //ajax컨트롤러
+    @GetMapping("/get-bookmark-data")
+    public String getBookmarkData(@RequestParam(name="nickname") String nickname, Model model) {
+        System.out.println(nickname);
+        model.addAttribute("reviews", inventoryService.getReviewData(nickname));
+        return "/main/inventory::#bookmarkDiv";
+    }
 }
