@@ -137,7 +137,7 @@
                                             <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
                                             <p class="card-text" th:text="${learn.word.answer}">단어 설명</p>
                                             <div class="bookmarkBtn" th:id="${learn.word.id}">
-                                                <i th:value="${learn.word.id}" class="bi bi-bookmark-star toggle" style="font-size: 2rem; cursor: pointer;"></i>
+                                                <i th:id="${learn.word.id}" class="bi bi-bookmark-star toggle" style="font-size: 2rem; cursor: pointer;"></i>
                                             </div>
                                             <button class="moveBtn">알아요로 옮기기</button>
                                         </div>
@@ -147,7 +147,7 @@
                         </div>
 
                         <!--북마크-->
-                        <div class="radio-contents">
+                        <div id="bookmarkDiv" class="radio-contents">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="review:${reviews}">
                                     <div class="card" style="width: 300px; height: 220px">
