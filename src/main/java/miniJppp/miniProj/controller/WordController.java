@@ -31,6 +31,8 @@ public class WordController {
     private final ChapterRespository chapterRespository;
     private final InventoryService inventoryService;
     private final LearnRepository learnRepository;
+    private final BookMarkRepository bookMarkRepository;
+    private final ReviewRepository reviewRepository;
 
     @GetMapping("/learn/{chapterId}")
     public String learn(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable("chapterId") Long chapter_id, Model model) throws SQLException {
@@ -63,6 +65,8 @@ public class WordController {
         Inventory memberInventory= inventoryService.getInventoryByName(memberDto.getNickname());
         List<Word> words = inventoryService.getInventoryWordList(memberInventory);
         List<Learn> learns = learnRepository.findAllByInventory(memberInventory);
+        BookMark memberBookMark = bookMarkRepository.findBookMarkByMember(member);
+        List<Review> memberReviews = reviewRepository.findAllByBookMark(memberBookMark);
 
         List<Chapter> chapters = chapterRespository.findAll();
 
@@ -70,6 +74,7 @@ public class WordController {
         model.addAttribute("words", words);
         model.addAttribute("learns", learns);
         model.addAttribute("member",memberDto);
+        model.addAttribute("reviews", memberReviews);
 
         return "/main/inventory";
     }

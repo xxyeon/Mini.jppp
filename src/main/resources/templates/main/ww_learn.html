@@ -96,9 +96,10 @@
 
             const true_btn = document.querySelector("#true");
             const false_btn = document.querySelector("#false");
+            const bookMarkBtn = document.querySelector("#bookmark");
 
             true_btn.addEventListener("click", init);
-            false_btn.addEventListener("click", init2)
+            false_btn.addEventListener("click", init2);
             function init() {
                 const shown_word = document.querySelector(".active");
                 console.log(shown_word.id);
@@ -131,20 +132,20 @@
                 console.log(shown_word.id);
 
                 var jsonData = JSON.stringify({
-                    wordId : shown_word.id,
-                    learn : false,
-                    nickname : [[${member.nickname}]]
+                    wordId: shown_word.id,
+                    learn: false,
+                    nickname: [[${member.nickname}]]
                 })
                 $.ajax({
-                    type : "POST",
-                    url : "http://localhost:8080/save-learn-data",
+                    type: "POST",
+                    url: "http://localhost:8080/save-learn-data",
                     contentType: "application/json",
                     dataType: "text",
                     data: jsonData,
-                    success : (data) => {
+                    success: (data) => {
                         console.log(data);
                     },
-                    error : (data, request, status, error) => {
+                    error: (data, request, status, error) => {
                         console.log("code: " + request.status);
                         console.log("message: " + request.responseText);
                         console.log("error: " + error);

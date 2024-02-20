@@ -42,10 +42,8 @@ public class oauthLoginContorller {
     @PostMapping("/join")
     public String join(Member member) {
         System.out.println("Member: " + member.getEmail());
-        String encPassword = bCryptPasswordEncoder.encode(member.getPassword());
-        member.setPassword(encPassword);
-        memberRepository.save(member);
-//        memberService.saveMember(member);
+//        memberRepository.save(member);
+        memberService.saveMember(member);
         return "redirect:/main-page";
     }
 

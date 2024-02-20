@@ -11,5 +11,5 @@ public interface LearnRepository extends JpaRepository<Learn, Long> {
 
     public List<Learn> findAllByInventory(Inventory inventory);
 
-    public Learn findByWord(Word word);
+    public Learn findByWordAndInventory(Word word, Inventory inventory);
 }

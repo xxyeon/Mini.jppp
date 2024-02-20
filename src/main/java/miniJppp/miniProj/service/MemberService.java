@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import miniJppp.miniProj.DTO.MemberDto;
 
+import miniJppp.miniProj.entity.BookMark;
 import miniJppp.miniProj.entity.Inventory;
 import miniJppp.miniProj.entity.Member;
+import miniJppp.miniProj.repository.BookMarkRepository;
 import miniJppp.miniProj.repository.InventoryRepository;
 import miniJppp.miniProj.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,28 +25,28 @@ import java.time.LocalDateTime;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final InventoryRepository inventoryRepository;
-
+    private final BookMarkRepository bookMarkRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public void saveMember(MemberDto memberDto) {
+    public void saveMember(Member memberDto) {
 
         Member findMember = memberRepository.findByName(memberDto.getEmail());
         if(findMember != null){
             log.info("이미 존재하는 회원입니다.");
-        } else if (memberRepository.findByName(memberDto.getNickname()) != null) {
+        } else if (memberRepository.findByName(memberDto.getName()) != null) {
             log.info("중복된 닉네임 입니다.");
         } else {
             Member member = Member.builder()
                     .email(memberDto.getEmail())
                     .createAt(memberDto.getCreateAt())
                     .password(bCryptPasswordEncoder.encode(memberDto.getPassword()))
-                    .name(memberDto.getNickname())
+                    .name(memberDto.getName())
                     .createAt(LocalDateTime.now())
                     .provider("NATIVE").build();
 
             memberRepository.save(member);
-
+            bookMarkRepository.save(new BookMark(LocalDateTime.now(), member));
             inventoryRepository.save(new Inventory(LocalDateTime.now(), member));
         }
     }
