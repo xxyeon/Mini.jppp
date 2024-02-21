@@ -156,6 +156,7 @@ input[type="radio"]{
     color: white;
     font-size: 14px;
     font-weight: 300;
+    margin-top:10px;
 }
 
 /*카드 안에 있음*/
@@ -164,4 +165,33 @@ input[type="radio"]{
     top: 6%;
     right: 5%;
 }
+
+.word-answer {
+    position: relative;
+    text-overflow: ellipsis;
+    display: inline-block;
+    padding: 10px;
+    overflow: hidden;
+    height: 76px;
+    overflow-y: scroll;
+}
+.word-title::-webkit-scrollbar {
+    display: none;
+}
+
+.word-answer::-webkit-scrollbar {
+    display: none;
+}
+.word-title {
+    position: relative;
+    text-overflow: ellipsis;
+    display: inline-block;
+    padding-right: 30px;
+    height: 24px;
+    overflow-y: scroll;
+
+}
+
+
+
 
