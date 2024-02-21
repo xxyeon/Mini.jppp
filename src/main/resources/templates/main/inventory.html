@@ -155,7 +155,7 @@
                                             <h5 class="card-title" th:text="${review.word.word}">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${review.word.chapter.number}">Chapter 1</h6>
                                             <p class="card-text" th:text="${review.word.answer}">단어 설명</p>
-                                            <button class="moveBtn">북마크 해제</button>
+                                            <button th:id="${review.word.id}" class="moveBtn deleteBookmark">북마크 해제</button>
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +178,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -186,6 +185,8 @@
             </div>
         </main>
     </div>
+</div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(function () {
@@ -196,102 +197,74 @@
     </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script th:inline="javascript">
-        // var i = 0;
-        // $('.bi-bookmark-star').on('click',function(){
-        //     if(i==0){
-        //         $(this).removeClass('bi-bookmark-star');
-        //         $(this).addClass('bi-bookmark-star-fill');
-        //         i++;
-        //     }else if(i==1){
-        //         $(this).removeClass('bi-bookmark-star-fill');
-        //         $(this).addClass('bi-bookmark-star');
-        //         i--;
-        //     }
-        //
-        // });
+        const logoBtn = document.querySelector("#logo a");
+        const inventoryBtn = document.querySelector("#inventoryButton");
+        const overviewBtn = document.querySelector("#overviewButton");
+        const reviewLst = [[${reviews}]];
+        let jsonData;
+
+        function handleInventoryBtn(jsonData) {
+            console.log("handleInventoryBtn 실행")
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/update-learn-data" ,
+                contentType: "application/json",
+                dataType: "text",
+                data: jsonData,
+                success: (data) => {
+                    console.log(data);
+                    window.location.replace("http://localhost:8080/main/inventory");
+                },
+                error: (data, request, status, error) => {
+                    console.log("code: " + request.status);
+                    console.log("message: " + request.responseText);
+                    console.log("error: " + error);
+                    console.log("data: " + data);
+                }
+            });
+        }
+
+        function handleLearnBtn(jsonData, url) {
+            console.log("handleLearnBtn 실행")
+            $.ajax({
+                type : "POST",
+                url : "http://localhost:8080" + url,
+                contentType: "application/json",
+                dataType: "text",
+                data: jsonData,
+                success : (data) => {
+                    console.log(data);
+                },
+                error : (data, request, status, error) => {
+                    console.log("code: " + request.status);
+                    console.log("message: " + request.responseText);
+                    console.log("error: " + error);
+                    console.log("data: " + data);
+                }
+            });
+        }
+
+        inventoryBtn.addEventListener("click", () => {location.href ="/main/inventory"});
+        overviewBtn.addEventListener("click", () => {location.href ="/"});
+        logoBtn.addEventListener("click", () => {location.href = "/"});
 
         var i = 0;
         $('.toggle').on('click',function (event) {
             event.preventDefault();
-            var jsonData = JSON.stringify({
+            jsonData = JSON.stringify({
                 wordId: $(this).attr("id"),
                 nickname: [[${member.nickname}]]
             });
             if ($(this).hasClass('bi-bookmark-star')) {
                 $(this).toggleClass('bi-bookmark-star bi-bookmark-star-fill');
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/save-review-data",
-                    contentType: "application/json",
-                    dataType: "text",
-                    data: jsonData,
-                    success: (data) => {
-                        console.log(data);
-                    }, error: (data, request, status, error) => {
-                        console.log("code: " + request.status);
-                        console.log("message: " + request.responseText);
-                        console.log("error: " + error);
-                        console.log("data: " + data);
-                    }
-                });
+                handleLearnBtn(jsonData, "/save-review-data");
             } else if ($(this).hasClass('bi-bookmark-star-fill')) {
                 $(this).toggleClass('bi-bookmark-star bi-bookmark-star-fill');
                 i++;
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/delete-review-data",
-                    contentType: "application/json",
-                    dataType: "text",
-                    data: jsonData,
-                    success: (data) => {
-                        console.log(data);
-                    }, error: (data, request, status, error) => {
-                        console.log("code: " + request.status);
-                        console.log("message: " + request.responseText);
-                        console.log("error: " + error);
-                        console.log("data: " + data);
-                    }
-                });
+                handleLearnBtn(jsonData, "/delete-review-data");
             }
         })
 
-
-
-            // if(i==0){
-                // $(this).attr('class','bi-bookmark-star-fill');
-
-            // }
-            /*else if(i==1){
-                $(this).attr('class','bi-bookmark-star');
-                i--;
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/delete-review-data",
-                    contentType: "application/json",
-                    dataType: "text",
-                    data: jsonData,
-                    success: (data) => {
-                        console.log(data);
-                    }, error: (data, request, status, error) => {
-                        console.log("code: " + request.status);
-                        console.log("message: " + request.responseText);
-                        console.log("error: " + error);
-                        console.log("data: " + data);
-                    }
-                });
-            }
-        });*/
-
-
-        const logoBtn = document.querySelector("#logo a");
-        const inventoryBtn = document.querySelector("#inventoryButton");
-        const overviewBtn = document.querySelector("#overviewButton");
-        logoBtn.addEventListener("click", () => {location.href = "/"});
-
-        inventoryBtn.addEventListener("click", () => {location.href ="/main/inventory"});
-        overviewBtn.addEventListener("click", () => {location.href ="/"});
-        console.log([[${reviews}]])
-        var reviewLst = [[${reviews}]];
         $('.toggle').each(function (idx, item) {
             $.each(reviewLst, function (index, review) {
                 if (review.word.id == $(item).attr("id")) {
@@ -319,58 +292,26 @@
         $('.move').each(function(index, item) {
             $(item).click(() => {
                 if ($(item).text() == "알아요로 옮기기") {
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost:8080/update-learn-data",
-                        contentType: "application/json",
-                        dataType: "text",
-                        data: JSON.stringify({
-                            wordId: $(this).attr("id"),
-                            learn: true,
-                            nickname: [[${member.nickname}]]
-                        }),
-                        success: (data) => {
-                            console.log(data);
-                            window.location.replace("http://localhost:8080/main/inventory");
-                        },
-                        error: (data, request, status, error) => {
-                            console.log("code: " + request.status);
-                            console.log("message: " + request.responseText);
-                            console.log("error: " + error);
-                            console.log("data: " + data);
-                        }
-                    });
+                    jsonData = JSON.stringify({
+                        wordId: $(this).attr("id"),
+                        learn: true,
+                        nickname: [[${member.nickname}]]
+                    })
+                    handleInventoryBtn(jsonData);
+
                 } else if ($(this).text() == "몰라요로 옮기기") {
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost:8080/update-learn-data",
-                        contentType: "application/json",
-                        dataType: "text",
-                        data: JSON.stringify({
-                            wordId: $(this).attr("id"),
-                            learn: false,
-                            nickname: [[${member.nickname}]]
-                        }),
-                        success: (data) => {
-                            console.log(data);
-                            window.location.replace("http://localhost:8080/main/inventory");
-                        },
-                        error: (data, request, status, error) => {
-                            console.log("code: " + request.status);
-                            console.log("message: " + request.responseText);
-                            console.log("error: " + error);
-                            console.log("data: " + data);
-                        }
-                    });
+                    jsonData = JSON.stringify({
+                        wordId: $(this).attr("id"),
+                        learn: false,
+                        nickname: [[${member.nickname}]]
+                    })
+                    handleInventoryBtn(jsonData);
                 }
             })
         })
 
-
-
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-</div>
 </body>
 </html>

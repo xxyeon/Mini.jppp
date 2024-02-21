@@ -97,21 +97,13 @@
             const true_btn = document.querySelector("#true");
             const false_btn = document.querySelector("#false");
             const bookMarkBtn = document.querySelector("#bookmark");
+            let jsonData;
 
-            true_btn.addEventListener("click", init);
-            false_btn.addEventListener("click", init2);
-            function init() {
-                const shown_word = document.querySelector(".active");
-                console.log(shown_word.id);
-
-                var jsonData = JSON.stringify({
-                    wordId : shown_word.id,
-                    learn : true,
-                    nickname : [[${member.nickname}]]
-                })
+            function handleLearnBtn(jsonData, url) {
+                console.log("handleLearnBtn 실행")
                 $.ajax({
                     type : "POST",
-                    url : "http://localhost:8080/save-learn-data",
+                    url : "http://localhost:8080" + url,
                     contentType: "application/json",
                     dataType: "text",
                     data: jsonData,
@@ -127,32 +119,29 @@
                 });
             }
 
-            function init2() {
+
+            true_btn.addEventListener("click", () => {
                 const shown_word = document.querySelector(".active");
                 console.log(shown_word.id);
 
-                var jsonData = JSON.stringify({
+                jsonData = JSON.stringify({
+                    wordId : shown_word.id,
+                    learn : true,
+                    nickname : [[${member.nickname}]]
+                })
+                handleLearnBtn(jsonData, "/save-learn-data")
+            });
+            false_btn.addEventListener("click", () => {
+                const shown_word = document.querySelector(".active");
+                console.log(shown_word.id);
+
+                jsonData = JSON.stringify({
                     wordId: shown_word.id,
                     learn: false,
                     nickname: [[${member.nickname}]]
                 })
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/save-learn-data",
-                    contentType: "application/json",
-                    dataType: "text",
-                    data: jsonData,
-                    success: (data) => {
-                        console.log(data);
-                    },
-                    error: (data, request, status, error) => {
-                        console.log("code: " + request.status);
-                        console.log("message: " + request.responseText);
-                        console.log("error: " + error);
-                        console.log("data: " + data);
-                    }
-                });
-            }
+                handleLearnBtn(jsonData, "/save-learn-data")
+            });
         </script>
     </body>
 </html>
