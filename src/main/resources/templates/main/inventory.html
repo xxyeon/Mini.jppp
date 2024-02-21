@@ -149,7 +149,7 @@
                         <!--북마크-->
                         <div id="bookmarkDiv" class="radio-contents">
                             <div class="row">
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="review:${reviews}">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="review:${reviews}" th:id="${review.id}">
                                     <div class="card" style="width: 300px; height: 220px">
                                         <div class="card-body">
                                             <h5 class="card-title" th:text="${review.word.word}">Card title</h5>
@@ -165,7 +165,7 @@
                         <!--알아요-->
                         <div class="radio-contents">
                             <div class="row knowDiv">
-                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${learn.learn}">
+                                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${learn.learn}" >
                                     <div th:if="${learn.learn}" class="card" style="width: 300px; height: 220px;">
                                         <div id="knowDiv" class="card-body">
                                             <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
@@ -200,7 +200,7 @@
         const logoBtn = document.querySelector("#logo a");
         const inventoryBtn = document.querySelector("#inventoryButton");
         const overviewBtn = document.querySelector("#overviewButton");
-        const reviewLst = [[${reviews}]];
+        let reviewLst = [[${reviews}]];
         let jsonData;
 
         function handleInventoryBtn(jsonData) {
@@ -226,6 +226,7 @@
 
         function handleLearnBtn(jsonData, url) {
             console.log("handleLearnBtn 실행")
+            console.log(jsonData)
             $.ajax({
                 type : "POST",
                 url : "http://localhost:8080" + url,
@@ -248,6 +249,20 @@
         overviewBtn.addEventListener("click", () => {location.href ="/"});
         logoBtn.addEventListener("click", () => {location.href = "/"});
 
+
+        $(document).on("click", ".deleteBookmark", function () { //$('/deleteBookmark').on("click") or .click 작동 안함.
+
+                console.log($(this).attr("id"))
+                jsonData = JSON.stringify({
+                    wordId: $(this).attr("id"),
+                    nickname: [[${member.nickname}]]
+                });
+                console.log(jsonData)
+                handleLearnBtn(jsonData, "/delete-review-data");
+                window.location.replace("http://localhost:8080/main/inventory");
+
+            });
+
         var i = 0;
         $('.toggle').on('click',function (event) {
             event.preventDefault();
@@ -265,7 +280,8 @@
             }
         })
 
-        $('.toggle').each(function (idx, item) {
+        $('.toggle').each(function (idx, item) { //처음 페이지 렌더링 될때 북마크에 있는 단어는 북마크 아이콘은 color fill
+            reviewLst = [[${reviews}]];
             $.each(reviewLst, function (index, review) {
                 if (review.word.id == $(item).attr("id")) {
                     if ($(item).hasClass('bi-bookmark-star-fill') == false) {
