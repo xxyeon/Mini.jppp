@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app/step2/zip
+    destination: /home/ec2-user/app/zip
     overwrite: yes
 permissions:
-  - object: /home/ec2-user/app/step2/zip
+  - object: /home/ec2-user/app/zip
     owner: ec2-user
     group: ec2-user
 hooks:
