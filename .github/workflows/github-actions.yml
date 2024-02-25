@@ -9,7 +9,7 @@ on:
 env:
   PROJECT_NAME: minijppp_project
   BUCKET_NAME: first-cicd-bucket
-  CODE_DEPLOY_APP_NAME: minijppp_cicd
+  CODE_DEPLOY_APP_NAME: minijppp_cicd_2
   DEPLOYMENT_GROUP_NAME: minijppp_instance
 
 jobs:
