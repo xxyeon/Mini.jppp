@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 변수 선언
-REPOSITORY=~/app/step2
+REPOSITORY=~/app
 EXECUTABLE_NAME=miniProj
 
 
