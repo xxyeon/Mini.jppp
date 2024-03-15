@@ -20,4 +20,6 @@ public class MemberDto {
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
     private String profileImgUrl;
+    private String provider;
+    private boolean isPW;
 }

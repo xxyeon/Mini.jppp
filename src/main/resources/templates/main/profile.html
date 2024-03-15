@@ -88,52 +88,62 @@
             <main class="main-body" style="font-family: 'IBM Plex Sans KR', sans-serif">
               <h2 id="title">내 정보 관리</h2>
               <p id="title2">내 정보 수정</p>
-              <div id="my-info">
+              <div id="my-info" th:object="${member}">
                 <a href="#" aria-expanded="false">
                   <img th:attr="src=@{/img/userProfile.jpeg}" src="../img/userProfile.jpeg" alt="mdo" width="200" height="200" class="rounded-circle">
                 </a>
                 <div class="my-info-detail">
                   <p style="font-weight: 300; color: rgba(31,34,38,0.6)">아래는 다른 유저들에게 보이는 정보입니다.</p>
-                  <div class="row">
-                    <div class="col">
-                      <p>이름</p>
+                  <form name="updateInfo" action="/update-info", method="post">
+                    <div class="mb-3">
+                      <label for="disabledTextInput" class="form-label">Email</label>
+                      <input name="email" type="email" id="disabledTextInput" class="form-control" th:value="*{email}" readonly>
+
                     </div>
-                    <div class="col">
-                      <textarea th:text="${member.nickname}">홍길동</textarea>
+                    <div class="mb-3">
+                      <label for="inputNickname" class="form-label">Nickname</label>
+
+                        <input name="nickname" type="text" class="form-control" id="inputNickname" th:placeholder="*{nickname}" required>
+
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <p>소개글</p>
-                    </div>
-                    <div class="col">
-                      <textarea>안녕하세요 [[${member.nickname}]]입니다!</textarea>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <p>링크</p>
-                    </div>
-                    <div class="col">
-                      <textarea>github.com/gildong</textarea>
-                    </div>
-                  </div>
-                </div>
-                <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수정</button>
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body" style="font-weight: 300; height: 80px">
-                        내 정보를 수정하시겠습니까?
-                        <button class="btn-no" data-bs-dismiss="modal">아니오</button>
-                        <button class="btn-yes" data-bs-dismiss="modal">예</button>
+                    <div class="mb-3">
+                      <label id="checkPw" for="inputPassword" class="form-label">Password</label>
+                        <input name="password" th:disabled="*{provider == 'google'} ? 'disabled'" th:required="*{provider != 'google'} ? 'required'" type="password" class="form-control" id="inputPassword">
+                        <div id="passwordHelpBlock" class="form-text">
+                          정보를 수정하려면 비밀번호를 입력하세요. <br>구글 로그인 유저는 입력하지 않아도 됩니다.
+                        </div>
+                      <div th:if="*{!isPW}" id="errorMsg" class="form-text">비밀번호가 일치하지 않습니다.</div>
+                      </div>
+
+                    <button id="updateBnt" type="submit" class="btn btn-primary">수정</button>
+                  </form>
+
+                  <button th:if="*{provider != 'google'}" style="margin-top: 5px" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">비밀번호 변경하기</button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="/update-pw" method="post">
+                        <div class="modal-body">
+                          <div class="mb-3">
+                            <label for="updatePw" class="form-label">New password</label>
+                            <input name="email" type="email" class="form-control" id="updatePw" required>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                        </form>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
               <br>
               <p>계정 정보</p>
 

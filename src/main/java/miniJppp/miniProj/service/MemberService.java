@@ -4,16 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import miniJppp.miniProj.DTO.MemberDto;
 
+import miniJppp.miniProj.DTO.UserInfo;
 import miniJppp.miniProj.entity.BookMark;
 import miniJppp.miniProj.entity.Inventory;
 import miniJppp.miniProj.entity.Member;
 import miniJppp.miniProj.repository.BookMarkRepository;
 import miniJppp.miniProj.repository.InventoryRepository;
 import miniJppp.miniProj.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,4 +72,23 @@ public class MemberService {
         }
 
     }
+
+    @Transactional
+    public void updateUserInfo(UserInfo userInfo) {
+        Member member = memberRepository.findByEmail(userInfo.getEmail());
+        MemberDto memberDto;
+        if (!bCryptPasswordEncoder.matches(userInfo.getPassword(), member.getPassword())) {
+            member.setPw(false);
+
+
+        } else {
+            LocalDateTime updateTime = LocalDateTime.now();
+            member.setName(userInfo.getNickname());
+            member.setUpdateAt(updateTime);
+            member.setPw(true);
+
+        }
+    }
+
 }
+

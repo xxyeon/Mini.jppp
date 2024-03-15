@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -34,6 +35,8 @@ public class Member {
     private String password;
     private String provider;
     private String providerId;
+    @ColumnDefault("true")
+    private boolean isPw;
 
     public Member(String name, String profileImgUrl, LocalDateTime createAt) {
         this.name = name;

@@ -113,11 +113,13 @@ public class WordController {
 
     @GetMapping("/profile")
     public String profile(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        Member member = principalDetails.getUser();
+        Member member = memberRepository.findByEmail(principalDetails.getUser().getEmail());
         MemberDto memberDto = MemberDto.builder()
                 .nickname(member.getName())
                 .email(member.getEmail())
                 .updateAt(member.getUpdateAt())
+                .provider(member.getProvider())
+                .isPW(member.isPw())
                 .build();
         model.addAttribute("member", memberDto);
         return"/main/profile";
