@@ -9,11 +9,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <!--  calendar 화살표 로고-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link href="../assets/dist/css/bootstrap.min.css/bootstrap.bundle.js" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;500&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../../static/js/Untitled.js" defer></script>
 </head>
 <body class="fade">
   <div class="all">
@@ -40,21 +43,15 @@
           <li><a th:onclick="|location.href='@{/main/miniGame}'|" onclick="location.href='miniGame.html'" class="nav-link px-2 link-body-emphasis">Mini game</a></li>
         </ul>
 
-        <form class="col-2 col-md-3 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
-
         <div class="dropdown text-end">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
              data-bs-toggle="dropdown" aria-expanded="false">
             <img th:attr="src=@{/img/userProfile.jpeg}" src="../img/userProfile.jpeg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" th:onclick="|location.href='@{/main/profile}'|" onclick="location.href='profile.html'">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" th:onclick="|location.href='@{/logout}'|" href="#">Sign out</a></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
           </ul>
         </div>
       </div>
@@ -74,10 +71,14 @@
           <div class="collapse show" id="home-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li id="side-info-edit"><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">내 정보 수정</a></li>
-              <li id="side-account-info"><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">계정 정보</a></li>
             </ul>
           </div>
         </li>
+        <span id="side-attend">
+          <button class="btn d-inline-flex align-items-left rounded border-0 collapsed">
+          나의 출석
+          </button>
+        </span>
       </ul>
     </aside>
   </div>
@@ -119,6 +120,7 @@
                     </div>
                   </div>
                 </div>
+                <button id="logout">로그아웃</button>
                 <button class="btn-edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">수정</button>
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -135,42 +137,47 @@
               </div>
 
               <br>
-              <p>계정 정보</p>
-
-              <div id="account-info">
-                <div class="account-info-detail">
-                  <p id="title3">계정 연동</p>
-                  <div class="row">
-                    <div class="col">
-                      <img th:attr="src=@{/img/googleLogo.png}" src="../img/googleLogo.png" alt="mdo" width="60" height="60">
-                      <span style="color: black; font-weight: 300">Google</span>
-                    </div>
-                    <div class="col" style="text-align: right">
-                      <button class="btn-account">연동하기</button>
+              <br>
+              <h2 id="title3">나의 출석</h2>
+              <div class="wrapper">
+                <header>
+                  <p class="current-date"></p>
+                  <div class="icons">
+                    <span id="prev" class="material-symbols-rounded">chevron_left</span>
+                    <span id="next" class="material-symbols-rounded">chevron_right</span>
+                  </div>
+                </header>
+                <div class="calendar">
+                  <ul class="weeks">
+                    <li>Sun</li>
+                    <li>Mon</li>
+                    <li>Tue</li>
+                    <li>Wed</li>
+                    <li>Thu</li>
+                    <li>Fri</li>
+                    <li>Sat</li>
+                  </ul>
+                  <ul class="days" data-bs-toggle="modal" data-bs-target="#alertCheck"></ul>
+                </div>
+              </div>
+              <div class="modal fade" id="alertCheckZero" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body" style="font-weight: 300; height: 80px">
+                      출석 체크 완료
+                      <button class="btn-yes" data-bs-dismiss="modal">닫기</button>
                     </div>
                   </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col">
-                      <p>이메일</p>
-                    </div>
-                    <div class="col" style="text-align: right">
-                      <p style="font-weight: 300">gildong@gmail.com</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <p>비밀번호</p>
-                  <div class="row">
-                    <div class="col">
-                      <p style="font-weight: 300">최근 업데이트: 2024-02-01</p>
-                    </div>
-                    <div class="col" style="text-align: right">
-                      <button id="btn-change-password">비밀번호 변경하기</button>
+                </div>
+              </div>
+              <div class="modal fade" id="alertCheckOne" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body" style="font-weight: 300; height: 80px">
+                      출석체크는 당일만 가능합니다
+                      <button class="btn-yes" data-bs-dismiss="modal">닫기</button>
                     </div>
                   </div>
-                  <hr>
-                  <p th:onclick="|location.href='@{/logout}'|" style="text-align: right; color: #0d6efd">로그아웃</p>
-                  <p style="text-align: right; color: red">계정 탈퇴</p>
                 </div>
               </div>
             </main>
@@ -193,7 +200,7 @@
   });
 
   $(document).ready(function() {
-    $('#side-account-info').click(function () {
+    $('#side-attend').click(function () {
       var offset = $('#title3').offset();
       $('html').animate({scrollTop: offset.top}, 50);
     });
@@ -202,13 +209,13 @@
   var i = 0;
   var newHeight;
 
-  $('#side-my-info button').on('click',function() {
+  $('#side-my-info').on('click',function() {
     if(i==0) {
-      newHeight = '100px';
+      newHeight = '140px';
       i++;
     }
     else{
-      newHeight = '140px';
+      newHeight = '170px';
       i--;
     }
 
