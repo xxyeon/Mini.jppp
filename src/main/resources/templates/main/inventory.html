@@ -119,13 +119,13 @@
                         <label for="radioBookmark">북마크</label>
                     </div>
 
-                    <div class="radio-block">
+                    <div class="radio-block col-sm-12 col-lg-12 mb-12 mb-sm-12">
                         <div class="radio-contents"><!--무시--></div>
                         <!--몰라요-->
                         <div class="radio-contents">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${!learn.learn}">
-                                    <div class="card" style="width: 300px; height: 220px">
+                                    <div class="card col-sm-12 col-lg-12 mb-12 mb-sm-12" style="height: 230px;">
                                         <div class="card-body">
                                             <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
@@ -144,7 +144,7 @@
                         <div class="radio-contents">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${learn.learn}">
-                                    <div class="card" style="width: 300px; height: 220px">
+                                    <div class="card col-sm-12 col-lg-12 mb-12 mb-sm-12" style="height: 230px;">
                                         <div class="card-body">
                                             <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
@@ -160,7 +160,7 @@
                         <div class="radio-contents">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-4 mb-3 mb-sm-3" th:each="learn:${learns}" th:if="${learn.learn}">
-                                    <div th:if="${learn.learn}" class="card" style="width: 300px; height: 220px;">
+                                    <div th:if="${learn.learn}" class="card col-sm-12 col-lg-12 mb-12 mb-sm-12" style="height: 230px;">
                                         <div class="card-body">
                                             <h5 class="card-title" th:text="${learn.word.word}">Card title</h5>
                                             <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${learn.word.chapter.number}">Chapter 1</h6>
@@ -172,7 +172,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,6 +179,7 @@
             </div>
         </main>
     </div>
+</div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(function () {

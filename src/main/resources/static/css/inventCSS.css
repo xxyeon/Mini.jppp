@@ -109,6 +109,11 @@ input[type="radio"]{
     -webkit-user-select: none;
 }
 
+.radio-contents{
+    /*width: 1000px;*/
+    /*height: 500px;*/
+}
+
 #radioKnow:checked ~ .radioBtn label:nth-child(1),
 #radioDontknow:checked ~ .radioBtn label:nth-child(2),
 #radioBookmark:checked ~ .radioBtn label:nth-child(3){
@@ -141,6 +146,7 @@ input[type="radio"]{
     top: 80%; /* 버튼이랑 겹치게*/
     border-radius: 20px;
     padding: 2%;
+    height: 500px;
 }
 
 .moveBtn {
