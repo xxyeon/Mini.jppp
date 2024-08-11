@@ -48,10 +48,6 @@ public class SecurityConfig {
         return new CustomAuthenticationFailureHandler();
     }
     @Bean
-    public BCryptPasswordEncoder encodePwd() {
-        return new BCryptPasswordEncoder();
-    }
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf((csrfConfig) ->
                 csrfConfig.disable()

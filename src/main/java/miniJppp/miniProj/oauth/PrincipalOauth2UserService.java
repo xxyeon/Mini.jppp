@@ -30,6 +30,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     private MemberRepository userRepository;
     @Autowired
     EmailService emailService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     //loadUser에서 후처리가 된다.
     //함수 종료시 @Authentication 어노테이션이 만들어진다.
@@ -80,7 +83,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
             }
             user = Member.builder()
                     .name(oAuth2UserInfo.getProvider() + "_" + oAuth2UserInfo.getProviderId())
-                    .password(tempPw) //임시 비밀번호 발급
+                    .password(bCryptPasswordEncoder.encode(tempPw)) //임시 비밀번호 발급
                     .email(oAuth2UserInfo.getEmail())
                     .provider(oAuth2UserInfo.getProvider())
                     .providerId(oAuth2UserInfo.getProviderId())

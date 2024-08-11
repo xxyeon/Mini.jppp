@@ -76,7 +76,7 @@ public class MemberService {
     @Transactional
     public void updateUserInfo(UserInfo userInfo) {
         log.info("UserInfo.getNickname: {}", userInfo.getNickname());
-        log.info("UserInfo.getProvider: {}, UserInfo.getEmail: {}", userInfo.getPassword(), userInfo.getEmail());
+        log.info("UserInfo.getProvider: {}, UserInfo.getEmail: {}", userInfo.getProvider(), userInfo.getEmail());
         Member member = memberRepository.findByProviderAndEmail(userInfo.getProvider(), userInfo.getEmail());
         log.info("Member: {}", member);
         MemberDto memberDto;
