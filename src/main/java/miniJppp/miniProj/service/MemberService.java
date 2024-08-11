@@ -60,7 +60,7 @@ public class MemberService {
     }
 
     public void login(MemberDto user) {
-        Member findMember = memberRepository.findByEmail(user.getEmail());
+        Member findMember = memberRepository.findByName(user.getNickname());
         System.out.println("User 객체: " + user.getEmail());
         System.out.println("findMember: " + findMember.getEmail());
         System.out.println(("user 비번: " + user.getPassword()));
@@ -75,7 +75,10 @@ public class MemberService {
 
     @Transactional
     public void updateUserInfo(UserInfo userInfo) {
-        Member member = memberRepository.findByEmail(userInfo.getEmail());
+        log.info("UserInfo.getNickname: {}", userInfo.getNickname());
+        log.info("UserInfo.getProvider: {}, UserInfo.getEmail: {}", userInfo.getProvider(), userInfo.getEmail());
+        Member member = memberRepository.findByProviderAndEmail(userInfo.getProvider(), userInfo.getEmail());
+        log.info("Member: {}", member);
         MemberDto memberDto;
         if (!bCryptPasswordEncoder.matches(userInfo.getPassword(), member.getPassword())) {
             member.setPw(false);

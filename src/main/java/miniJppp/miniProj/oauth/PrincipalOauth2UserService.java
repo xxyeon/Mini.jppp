@@ -1,10 +1,12 @@
 package miniJppp.miniProj.oauth;
 
+import lombok.extern.slf4j.Slf4j;
 import miniJppp.miniProj.config.auth.PrincipalDetails;
 import miniJppp.miniProj.entity.Member;
 import miniJppp.miniProj.oauth.provider.GoogleUserInfo;
 import miniJppp.miniProj.oauth.provider.OAuth2UserInfo;
 import miniJppp.miniProj.repository.MemberRepository;
+import miniJppp.miniProj.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -13,16 +15,24 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     //여기서 구글 로그인 후처리가 된다.
 
 
     @Autowired
     private MemberRepository userRepository;
+    @Autowired
+    EmailService emailService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     //loadUser에서 후처리가 된다.
     //함수 종료시 @Authentication 어노테이션이 만들어진다.
@@ -49,24 +59,37 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 //        String role = "ROLE_USER";
 
         Optional<Member> userOptional = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
+        //자체 회원가입한 회원과 중복되는지 확인
+
+//        Member findMember = userRepository.findByProviderAndEmail("NATIVE", oAuth2UserInfo.getEmail()).orElseThrow(); //provider와 이메일로 회원찾기. 만약 native로 구글 계정을 사용하여 회원가입 하는데 이미 디비에 구글로 가입된 계정이 있다면 provider가 google인 사용자에게 본인인지 확인하라는 확인 메일을 전송하는게 좋을듯
 
         //이미 존재하는 회원인지 확인해서 없으면 회원가입 진행
         Member user;
-        if (userOptional.isPresent()) {
+        if (userOptional.isPresent()) { //구글을 통해서 가입한 적이 있다면
             user = userOptional.get();
             //user가 존재하면 update 해주기
             user.setEmail(oAuth2UserInfo.getEmail());
-            userRepository.save(user);
         } else {
             // user의 패스워트가 null이기 때문에 OAuth 유저는 일반적인 로그인을 할 수 없음.
+            //임시 비밀번호 발급
+            String tempPw;
+            try {
+                tempPw = emailService.sendEmail(oAuth2UserInfo.getEmail());
+                log.info("temp password: {}", tempPw);
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
             user = Member.builder()
                     .name(oAuth2UserInfo.getProvider() + "_" + oAuth2UserInfo.getProviderId())
+                    .password(bCryptPasswordEncoder.encode(tempPw)) //임시 비밀번호 발급
                     .email(oAuth2UserInfo.getEmail())
                     .provider(oAuth2UserInfo.getProvider())
                     .providerId(oAuth2UserInfo.getProviderId())
                     .build();
-            userRepository.save(user);
         }
+        userRepository.save(user);
         return new PrincipalDetails(user, oauth2User.getAttributes()); //이 객체가 Authentication에 위치
 
 
