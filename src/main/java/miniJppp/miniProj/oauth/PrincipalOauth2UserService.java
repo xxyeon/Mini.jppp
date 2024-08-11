@@ -58,7 +58,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         Optional<Member> userOptional = userRepository.findByProviderAndProviderId(oAuth2UserInfo.getProvider(), oAuth2UserInfo.getProviderId());
         //자체 회원가입한 회원과 중복되는지 확인
 
-        Member findMember = userRepository.findByEmail(oAuth2UserInfo.getEmail());
+//        Member findMember = userRepository.findByProviderAndEmail("NATIVE", oAuth2UserInfo.getEmail()).orElseThrow(); //provider와 이메일로 회원찾기. 만약 native로 구글 계정을 사용하여 회원가입 하는데 이미 디비에 구글로 가입된 계정이 있다면 provider가 google인 사용자에게 본인인지 확인하라는 확인 메일을 전송하는게 좋을듯
 
         //이미 존재하는 회원인지 확인해서 없으면 회원가입 진행
         Member user;
@@ -66,11 +66,6 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
             user = userOptional.get();
             //user가 존재하면 update 해주기
             user.setEmail(oAuth2UserInfo.getEmail());
-        } else if (findMember != null){ //구글을 통하지 않고 사이트 자체에서 구글 이메일로 가입한 적이 있다면
-            //이미 해당 구글 이메일로 가입한적이 있다면
-            log.error("해당 이메일로 이미 가입한 이력이 있습니다.");
-            throw new ArithmeticException("이미 가입한 이력이 있습니다.");
-
         } else {
             // user의 패스워트가 null이기 때문에 OAuth 유저는 일반적인 로그인을 할 수 없음.
             //임시 비밀번호 발급
