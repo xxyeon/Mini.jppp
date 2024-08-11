@@ -98,6 +98,12 @@
                   <p style="font-weight: 300; color: rgba(31,34,38,0.6)">아래는 다른 유저들에게 보이는 정보입니다.</p>
                   <form name="updateInfo" action="/update-info" , method="post">
                     <div class="mb-3">
+                      <label for="disabledProvider" class="form-label">로그인 경로</label>
+                      <input name="provider" type="text" id="disabledProvider" class="form-control" th:value="*{provider == 'NATIVE'} ? 'NATIVE' : 'google'"
+                             readonly>
+
+                    </div>
+                    <div class="mb-3">
                       <label for="disabledTextInput" class="form-label">Email</label>
                       <input name="email" type="email" id="disabledTextInput" class="form-control" th:value="*{email}"
                              readonly>
@@ -113,11 +119,11 @@
 
                     <div class="mb-3">
                       <label id="checkPw" for="inputPassword" class="form-label">Password</label>
-                      <input name="password" th:disabled="*{provider == 'google'} ? 'disabled'"
-                             th:required="*{provider != 'google'} ? 'required'" type="password" class="form-control"
+                      <input name="password"
+                             type="password" class="form-control"
                              id="inputPassword">
                       <div id="passwordHelpBlock" class="form-text">
-                        정보를 수정하려면 비밀번호를 입력하세요. <br>구글 로그인 유저는 입력하지 않아도 됩니다.
+                        정보를 수정하려면 비밀번호를 입력하세요.
                       </div>
                       <div th:if="*{!isPW}" id="errorMsg" class="form-text">비밀번호가 일치하지 않습니다.</div>
                     </div>
@@ -125,7 +131,7 @@
                     <button id="updateBnt" type="submit" class="btn btn-primary">수정</button>
                   </form>
 
-                  <button th:if="*{provider != 'google'}" style="margin-top: 5px" class="btn btn-primary"
+                  <button style="margin-top: 5px" class="btn btn-primary"
                           data-bs-toggle="modal" data-bs-target="#exampleModal">비밀번호 변경하기
                   </button>
 
@@ -141,7 +147,7 @@
                           <div class="modal-body">
                             <div class="mb-3">
                               <label for="updatePw" class="form-label">New password</label>
-                              <input name="email" type="email" class="form-control" id="updatePw" required>
+                              <input name="password" type="email" class="form-control" id="updatePw" required>
                             </div>
                           </div>
                           <div class="modal-footer">

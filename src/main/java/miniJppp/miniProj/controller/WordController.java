@@ -113,8 +113,8 @@ public class WordController {
 
     @GetMapping("/profile")
     public String profile(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        Member member = principalDetails.getUser();
-//        Member member = memberRepository.findByName(principalDetails.getUser().getName());
+//        Member member = principalDetails.getUser();
+        Member member = memberRepository.findByProviderAndEmail(principalDetails.getUser().getProvider(), principalDetails.getUser().getEmail()); // 회원정보가 수정되면 DB에서 가져와야함. 세션? 에서 가져오면 변경 전 데이터를 그대로 가지고 있기때문에 변경 사항이 적용이 안된다
         MemberDto memberDto = MemberDto.builder()
                 .nickname(member.getName())
                 .email(member.getEmail())
